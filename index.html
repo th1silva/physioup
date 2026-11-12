@@ -1,0 +1,2554 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PhysioUp | Fisioterapia Especializada</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,600;0,700;0,800;0,900;1,800;1,900&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                    },
+                    colors: {
+                        physio: {
+                            dark: '#0e1013',
+                            card: '#16191f',
+                            cardHover: '#1f242c',
+                            orange: '#FF6B00',
+                            gold: '#FFAA00',
+                            accent: '#FF8800',
+                        }
+                    },
+                    backgroundImage: {
+                        'hero-glow': 'radial-gradient(circle at 50% 30%, rgba(255, 107, 0, 0.15) 0%, rgba(14, 16, 19, 0.95) 70%)',
+                        'card-gradient': 'linear-gradient(135deg, rgba(25, 28, 35, 0.9) 0%, rgba(15, 17, 21, 0.9) 100%)',
+                        'gold-gradient': 'linear-gradient(135deg, #FF6B00 0%, #FFAA00 100%)',
+                    },
+                    boxShadow: {
+                        'glow': '0 0 25px rgba(255, 107, 0, 0.3)',
+                        'glow-lg': '0 0 50px rgba(255, 107, 0, 0.25)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        @keyframes pulseGlow {
+            0%, 100% { opacity: 0.4; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.05); }
+        }
+        .animate-glow {
+            animation: pulseGlow 4s infinite ease-in-out;
+        }
+        .text-gradient {
+            background: linear-gradient(135deg, #FF8800 0%, #FFB700 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .border-glow {
+            border: 1px solid rgba(255, 107, 0, 0.25);
+            transition: all 0.3s ease;
+        }
+        .border-glow:hover {
+            border-color: rgba(255, 107, 0, 0.7);
+            box-shadow: 0 0 20px rgba(255, 107, 0, 0.25);
+        }
+    </style>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #0e1013;
+            color: #f5f5f5;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        :root {
+            --laranja: #f47721;
+            --fundo-card: #101317;
+            --texto: #c4c8ce;
+        }
+
+        /* SEÇÃO PRINCIPAL */
+
+        
+.procedimentos {
+   
+    padding: 35px 2%;
+    background-color: #0e1013;
+
+}
+
+.procedimentos {
+    position: relative;
+    isolation: isolate;
+    padding: 35px 2%;
+    background-color: #0e1013;
+    background-image: radial-gradient(
+        circle at 50% 30%,
+        rgba(255, 107, 0, 0.08) 0%,
+        rgba(14, 16, 19, 0.95) 70%
+    );
+    border-top: none;
+}
+
+
+        /* INÍCIO DA SEÇÃO */
+
+        #inicio-procedimentos {
+            scroll-margin-top: 25px;
+        }
+
+        .cabecalho {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .subtitulo {
+            color: var(--laranja);
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .titulo {
+            font-size: clamp(26px, 2.5vw, 38px);
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .titulo span {
+            color: var(--laranja);
+        }
+
+        .descricao-principal {
+            color: var(--texto);
+            font-size: 14px;
+            line-height: 1.6;
+            max-width: 600px;
+        }
+
+        /* BOTÕES */
+
+        .botao {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            padding: 11px 15px;
+            border: 1px solid var(--laranja);
+            border-radius: 30px;
+            background: transparent;
+            color: white;
+            text-decoration: none;
+            font-size: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: 0.25s;
+        }
+
+        .botao:hover {
+            background: var(--laranja);
+            transform: translateY(-2px);
+        }
+
+        .botao span {
+            color: var(--laranja);
+            font-size: 17px;
+        }
+
+        .botao:hover span {
+            color: white;
+        }
+
+        .botao-todos {
+            flex-shrink: 0;
+            white-space: nowrap;
+        }
+
+        /* GRADE: 8 PROCEDIMENTOS NA MESMA LINHA */
+
+        .grade-procedimentos {
+            display: grid;
+            grid-template-columns: repeat(8, minmax(0, 1fr));
+            gap: 10px;
+            align-items: stretch;
+        }
+
+        @media (max-width: 1100px) {
+            .grade-procedimentos {
+                grid-template-columns: repeat(4, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 640px) {
+            .cabecalho {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .grade-procedimentos {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 12px;
+            }
+
+            .card-imagem {
+                height: 125px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .grade-procedimentos {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* CARDS */
+
+    .card {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid rgba(255, 107, 0, 0.45);
+    border-radius: 10px;
+    background: linear-gradient(
+        135deg,
+        rgba(255, 107, 0, 0.16) 0%,
+        #101317 65%
+    );
+    transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+
+    /* Brilho externo constante */
+    box-shadow:
+        0 0 15px rgba(255, 107, 0, 0.20),
+        0 0 35px rgba(255, 107, 0, 0.12);
+}
+
+.card:hover {
+    border-color: #ff6b00;
+    transform: translateY(-4px);
+
+    /* Brilho mais forte ao passar o mouse */
+    box-shadow:
+        0 0 20px rgba(255, 107, 0, 0.45),
+        0 0 45px rgba(255, 107, 0, 0.30),
+        0 0 70px rgba(255, 107, 0, 0.15);
+}
+        .card-imagem {
+            width: 100%;
+            height: 105px;
+            overflow: hidden;
+            flex-shrink: 0;
+            background: #1a1d21;
+        }
+
+        .card-imagem img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s;
+        }
+
+        .card:hover .card-imagem img {
+            transform: scale(1.06);
+        }
+
+        .card-conteudo {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            flex: 1;
+            padding: 10px 8px;
+        }
+
+        .card h3 {
+            width: 100%;
+            min-height: 42px;
+            margin-bottom: 8px;
+            font-size: 11px;
+            line-height: 1.35;
+            text-transform: uppercase;
+            overflow-wrap: anywhere;
+        }
+
+        .card p {
+            color: var(--texto);
+            font-size: 10px;
+            line-height: 1.5;
+            margin-bottom: 12px;
+        }
+
+        .botao-card {
+            width: 100%;
+            margin-top: auto;
+            padding: 9px 3px;
+            gap: 4px;
+            font-size: 9px;
+            white-space: nowrap;
+        }
+
+    </style>
+</head>
+<body class="bg-physio-dark text-slate-100 font-sans selection:bg-physio-orange selection:text-white antialiased overflow-x-hidden">
+
+    <div class="bg-gradient-to-r from-neutral-950 via-amber-950/40 to-neutral-950 border-b border-amber-500/20 py-2.5 px-4 text-center text-xs md:text-sm font-semibold tracking-wide text-amber-400/90 flex items-center justify-center gap-2">
+        <i class="fa-regular fa-clock animate-pulse text-physio-orange"></i>
+        <span>HORÁRIOS DE ATENDIMENTO: <span class="text-white">SEG A SEX: 08H ÀS 19H</span> | <span class="text-white">SÁBADOS: 08H ÀS 17H</span></span>
+    </div>
+
+    <header class="sticky top-0 z-50 bg-physio-dark/90 backdrop-blur-md border-b border-white/10 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="#inicio" class="flex items-center gap-3 group">
+                <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-physio-orange to-amber-500 p-0.5 shadow-glow flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
+                    <div class="w-full h-full bg-physio-dark rounded-[10px] flex items-center justify-center">
+                        <i class="fa-solid fa-person-running text-physio-orange text-xl"></i>
+                    </div>
+                </div>
+                 <div class="flex flex-col">
+                    <span class="text-2xl font-black italic tracking-wider text-white">PHYSIO<span class="text-physio-orange">UP</span></span>
+                    <span class="text-[9px] font-semibold tracking-widest text-neutral-400 uppercase">Fisioterapia Especializada</span>
+                </div>   
+            </a>
+
+            <nav class="hidden md:flex items-center gap-8 text-sm font-semibold tracking-wide">
+                <a href="#inicio" class="text-white hover:text-physio-orange transition-colors">INÍCIO</a>
+                <a href="#historia" class="text-neutral-300 hover:text-physio-orange transition-colors">HISTÓRIA</a>
+                <a href="#equipe" class="text-neutral-300 hover:text-physio-orange transition-colors">EQUIPE</a>
+                <a href="#secao-procedimentos" class="text-neutral-300 hover:text-physio-orange transition-colors">PROCEDIMENTOS</a>
+                <a href="#localizacao" class="text-neutral-300 hover:text-physio-orange transition-colors">LOCALIZAÇÃO</a>
+            </nav>
+
+            <div class="hidden lg:flex items-center gap-4">
+                <a href="https://www.instagram.com/physioup.am/" target="_blank" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white hover:text-physio-orange hover:border-physio-orange transition-all duration-300">
+                    <i class="fa-brands fa-instagram text-lg"></i>
+                </a>
+                <a href="https://api.whatsapp.com/message/4YRWNZAWB4I6C1?autoload=1&app_absent=0&utm_source=ig" target="_blank" class="px-5 py-2.5 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-xs uppercase tracking-wider transition-all duration-300 shadow-lg hover:shadow-emerald-500/20 flex items-center gap-2">
+                    <i class="fa-brands fa-whatsapp text-base"></i> Fale Conosco
+                </a>
+            </div>
+
+            <button id="menuBtn" onclick="toggleMenu()" class="md:hidden text-2xl text-white focus:outline-none">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+
+        <div id="mobileMenu" class="hidden md:hidden bg-physio-dark/95 border-b border-white/10 px-6 py-6 space-y-4">
+            <a href="#inicio" class="block text-white font-semibold hover:text-physio-orange">INÍCIO</a>
+            <a href="#historia" class="block text-neutral-300 font-semibold hover:text-physio-orange">HISTÓRIA</a>
+            <a href="#secao-procedimentos" class="block text-neutral-300 font-semibold hover:text-physio-orange">PROCEDIMENTOS</a>
+            <a href="#equipe" class="block text-neutral-300 font-semibold hover:text-physio-orange">EQUIPE</a>
+            <a href="#localizacao" class="block text-neutral-300 font-semibold hover:text-physio-orange">LOCALIZAÇÃO</a>
+            <div class="pt-4 border-t border-white/10 flex items-center justify-between">
+                <a href="https://www.instagram.com/physioup.am/" target="_blank" class="flex items-center gap-2 text-neutral-300 hover:text-physio-orange font-semibold">
+                    <i class="fa-brands fa-instagram text-xl"></i> @physioup.am
+                </a>
+                <a href="https://api.whatsapp.com/message/4YRWNZAWB4I6C1?autoload=1&app_absent=0&utm_source=ig" target="_blank" class="px-4 py-2 rounded-full bg-emerald-500 text-white font-bold text-xs uppercase">
+                    WhatsApp
+                </a>
+            </div>
+        </div>
+    </header>
+
+  <section id="inicio" class="relative min-h-[85vh] flex items-center justify-center bg-hero-glow overflow-hidden py-16 px-4">
+    <!-- Efeitos de iluminação no fundo -->
+    <div class="absolute top-1/4 left-10 w-72 h-72 bg-physio-orange/10 rounded-full blur-3xl animate-glow pointer-events-none"></div>
+    <div class="absolute bottom-10 right-10 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl animate-glow pointer-events-none" style="animation-delay: 2s;"></div>
+
+    <!-- Grid de 3 Colunas Alinhado -->
+    <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-3 gap-12 items-center relative z-10">
+        
+        <!-- 1. Coluna Esquerda -->
+        <div class="text-center lg:text-left space-y-4">
+            <div class="inline-block px-3 py-1 rounded-full bg-physio-orange/10 border border-physio-orange/30 text-physio-orange text-xs font-bold uppercase tracking-widest">
+                Performance & Cuidado
+            </div>
+            <h1 class="text-3xl sm:text-4xl xl:text-5xl font-black uppercase italic leading-tight tracking-tight text-white">
+                Onde o <br>
+                <span class="text-gradient">Movimento</span> <br>
+                Encontra a <br>
+                <span class="text-gradient">Evolução</span>
+            </h1>
+        </div>
+
+        <!-- 2. Coluna Central (Ícone Rotativo com Animação de Pulso) -->
+        <div class="flex flex-col items-center justify-center text-center mx-auto">
+            <div class="relative group cursor-pointer flex items-center justify-center">
+                <!-- Efeito Pulso Neon de Fundo -->
+                <div class="absolute inset-0 bg-physio-orange/30 rounded-full blur-2xl animate-ping opacity-30 pointer-events-none"></div>
+                <div class="absolute inset-0 bg-physio-orange/30 rounded-full blur-2xl opacity-50 group-hover:opacity-80 transition-opacity"></div>
+                
+                <!-- Imagem com transição de opacidade e escala -->
+                <img id="hero-procedure-icon" 
+                     src="icone.png" 
+                     alt="Procedimento PhysioUp" 
+                     class="relative w-56 h-56 sm:w-72 sm:h-72 object-contain transition-all duration-500 transform scale-100 opacity-100">
+                     
+            </div>
+            
+            <!-- Nome do Procedimento Atual -->
+            <h2 id="hero-procedure-title" class="text-2xl sm:text-3xl font-black uppercase italic mt-4 tracking-wide text-white transition-all duration-500">
+                Liberação <span class="text-physio-orange">Miofascial</span>
+            </h2>
+            <p class="text-xs text-neutral-400 font-semibold tracking-widest uppercase mt-1">PHYSIOUP • PROCEDIMENTOS</p>
+        </div>
+
+        <!-- 3. Coluna Direita -->
+        <div class="text-center lg:text-right space-y-4">
+            <div class="inline-block px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-bold uppercase tracking-widest">
+                Atendimento Humanizado
+            </div>
+            <h2 class="text-2xl sm:text-3xl font-black uppercase tracking-tight text-white">
+                Fisioterapia <br>
+                <span class="text-gradient">Especializada</span>
+            </h2>
+            <div class="flex flex-wrap justify-center lg:justify-end gap-2 text-xs font-bold text-neutral-300">
+                <span class="px-3 py-1 bg-white/5 rounded-full border border-white/10">Reabilitação</span>
+                <span class="px-3 py-1 bg-white/5 rounded-full border border-white/10">Prevenção</span>
+                <span class="px-3 py-1 bg-white/5 rounded-full border border-white/10">Recovery</span>
+            </div>
+            <div class="pt-4">
+                <a href="https://api.whatsapp.com/message/4YRWNZAWB4I6C1?autoload=1&app_absent=0&utm_source=ig" target="_blank" class="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-gold-gradient text-neutral-950 font-black text-sm uppercase tracking-wider hover:shadow-glow transition-all duration-300 transform hover:-translate-y-1">
+                    Agendar Avaliação <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- Script para trocar o ícone e título a cada 3 segundos -->
+<script>
+    const procedimentos = [
+        { img: "icone.png", title: 'Liberação <span class="text-physio-orange">Miofascial</span>' },
+        { img: "dry1.png", title: 'Dry <span class="text-physio-orange">Needling</span>' },
+        { img: "vento1.png", title: '<span class="text-physio-orange">Ventosaterapia</span>' },
+        { img: "coluna1.png", title: '<span class="text-physio-orange">Quiropraxia</span>' },
+        { img: "bota1.png", title: 'Bota <span class="text-physio-orange">Pneumática</span>' },
+        { img: "gelo1.png", title: 'Banheira <span class="text-physio-orange">de Gelo</span>' },
+        { img: "quente1.png", title: 'Banheira <span class="text-physio-orange">Quente</span>' },
+        { img: "icone2.png", title: 'Terapia de <span class="text-physio-orange">Contraste</span>' }
+    ];
+
+    let currentIndex = 0;
+    const iconImg = document.getElementById('hero-procedure-icon');
+    const titleElem = document.getElementById('hero-procedure-title');
+
+    setInterval(() => {
+        // Efeito de saída (diminui e esconde)
+        iconImg.classList.add('opacity-0', 'scale-90');
+        titleElem.classList.add('opacity-0');
+
+        setTimeout(() => {
+            // Avança para o próximo ícone
+            currentIndex = (currentIndex + 1) % procedimentos.length;
+            
+            // Troca a imagem e o título
+            iconImg.src = procedimentos[currentIndex].img;
+            titleElem.innerHTML = procedimentos[currentIndex].title;
+
+            // Efeito de entrada (aumenta e aparece com o pulso)
+            iconImg.classList.remove('opacity-0', 'scale-90');
+            titleElem.classList.remove('opacity-0');
+        }, 400); // tempo da animação suave
+    }, 3000); // 3000ms = 3 segundos
+</script>
+
+
+<section class="procedimentos" id="secao-procedimentos">
+
+    <!-- ESTE É O INÍCIO PARA ONDE O BOTÃO VAI VOLTAR -->
+    <div id="inicio-procedimentos">
+
+        <header class="cabecalho">
+
+            <div>
+                <p class="subtitulo">
+                    Tratamentos que fazem a diferença
+                </p>
+
+                <h1 class="titulo">
+                    Nossos <span>Procedimentos</span>
+                </h1>
+
+                <p class="descricao-principal">
+                    Utilizamos técnicas modernas e individualizadas
+                    para auxiliar na recuperação, na mobilidade
+                    e na qualidade de vida.
+                </p>
+            </div>
+
+            <!-- VOLTA AO INÍCIO DA SEÇÃO -->
+
+              <a href="#procedimentos"
+                   class="botao botao-todos">
+                  Ver todos os procedimentos
+
+                </a>
+
+        </header>
+
+    </div>
+
+    <!-- OS 8 CARDS FICAM AQUI -->
+
+    <div class="grade-procedimentos">
+<!-- O CARD 1 LIBERAÇAO -->
+        <article class="card">
+            <div class="card-imagem">
+                <img src="liberaçao.avif"
+                     alt="Liberação miofascial" loading="lazy">
+            </div>
+            <div class="card-conteudo">
+                <h3 class="text-gradient mb-0 leading-tight text-neutral-300 text-sm sm:text-base leading-relaxed">Liberação Miofascial</h3>
+
+<p class="mt-0 leading-normal">
+    Técnica terapêutica voltada ao alívio de tensões musculares e à melhora da mobilidade.
+    A liberação miofascial utiliza manobras manuais para trabalhar a fáscia, tecido que
+    envolve os músculos.
+</p>
+                <a href="#procedimento-liberacao-miofascial" class="botao botao-card">
+    Saiba mais
+    <span class="seta" aria-hidden="true">›</span>
+</a>
+            </div>
+        </article>
+<!-- O CARD 2 DRY NEEDLING -->
+        <article class="card">
+            <div class="card-imagem">
+                <img src="dry.png"
+                     alt="Dry Needling" loading="lazy">
+            </div>
+            <div class="card-conteudo">
+                <h3 class="text-gradient mb-0 leading-tight text-neutral-300 text-sm sm:text-base leading-relaxed">Dry Needling</h3>
+
+<p class="mt-0 leading-normal">
+    O Dry Needling é uma técnica que utiliza agulhas finas para tratar pontos de tensão muscular, ajudando a aliviar dores, reduzir contraturas e melhorar a mobilidade.
+</p>
+                <a href="#procedimento-dry-needling" class="botao botao-card">
+                    Saiba mais
+                    <span class="seta" aria-hidden="true">›</span>
+                </a>
+            </div>
+        </article>
+<!-- O CARD 3 VENTOSATERAPIA -->
+        <article class="card">
+            <div class="card-imagem">
+                <img src="ventosaterapia.jpg"
+                     alt="Ventosaterapia" loading="lazy">
+            </div>
+            <div class="card-conteudo">
+               <h3 class="text-gradient mb-0 leading-tight text-neutral-300 text-sm sm:text-base leading-relaxed">Ventosaterapia</h3>
+
+<p class="mt-0 leading-normal">
+   A ventosaterapia utiliza ventosas para auxiliar no alívio de tensões musculares, promover relaxamento e complementar o tratamento fisioterapêutico.
+</p>
+                <a href="#procedimento-ventosaterapia" class="botao botao-card">
+                    Saiba mais <span>›</span>
+                </a>
+            </div>
+        </article>
+
+<!-- O CARD 4 QUIROPRAXIA -->
+        <article class="card">
+            <div class="card-imagem">
+                <img src="quiropraxia.jpg"
+                     alt="Quiropraxia" loading="lazy">
+            </div>
+            <div class="card-conteudo">
+                <h3 class="text-gradient mb-0 leading-tight text-neutral-300 text-sm sm:text-base leading-relaxed">Quiropraxia</h3>
+
+<p class="mt-0 leading-normal">
+    A quiropraxia utiliza técnicas manuais para melhorar a mobilidade das articulações, aliviar desconfortos musculoesqueléticos e contribuir para o bem-estar e a qualidade dos movimentos.
+</p>
+                <a href="#procedimento-quiropraxia" class="botao botao-card">
+                    Saiba mais <span>›</span>
+                </a>
+            </div>
+        </article>
+<!-- O CARD 5 BOTA PNEUMATICA -->
+        <article class="card">
+            <div class="card-imagem">
+                <img src="bota.png"
+                     alt="Bota Pneumática" loading="lazy">
+            </div>
+            <div class="card-conteudo">
+                <h3 class="text-gradient mb-0 leading-tight text-neutral-300 text-sm sm:text-base leading-relaxed">Bota Pneumática</h3>
+
+<p class="mt-0 leading-normal">
+   A bota pneumática utiliza compressão de ar para promover a circulação sanguínea, auxiliar na redução do inchaço e favorecer a recuperação muscular, sendo utilizada especialmente na recuperação esportiva.
+</p>
+                <a href="#procedimento-bota-pneumatica" class="botao botao-card">
+                    Saiba mais <span>›</span>
+                </a>
+            </div>
+        </article>
+<!-- O CARD 6 BANHEIRA DE GELO -->
+        <article class="card">
+            <div class="card-imagem">
+                <img src="banheiragelo.avif"
+                     alt="Banheira de Gelo" loading="lazy">
+            </div>
+            <div class="card-conteudo">
+                <h3 class="text-gradient mb-0 leading-tight text-neutral-300 text-sm sm:text-base leading-relaxed">Banheira de Gelo</h3>
+
+<p class="mt-0 leading-normal">
+    A banheira de gelo utiliza a imersão em água fria para auxiliar na recuperação após atividades físicas, aliviar temporariamente a sensação de dor muscular e contribuir para a recuperação esportiva.
+</p>
+                <a href="#procedimento-banheira-de-gelo" class="botao botao-card">
+                    Saiba mais <span>›</span>
+                </a>
+            </div>
+        </article>
+<!-- O CARD 7 BANHEIRA QUENTE -->
+        <article class="card">
+            <div class="card-imagem">
+                <img src="banheira quente.png"
+                     alt="Banheira Quente" loading="lazy">
+            </div>
+            <div class="card-conteudo">
+                <h3 class="text-gradient mb-0 leading-tight text-neutral-300 text-sm sm:text-base leading-relaxed">Banheira Quente</h3>
+
+<p class="mt-0 leading-normal">
+    A banheira quente utiliza a imersão em água aquecida para promover relaxamento muscular, aliviar tensões e proporcionar conforto, contribuindo para o bem-estar e a recuperação física.
+</p>
+                <a href="#procedimento-banheira-quente" class="botao botao-card">
+                    Saiba mais <span>›</span>
+                </a>
+            </div>
+        </article>
+<!-- O CARD 8 FISIOTERAPIA DE CONTRASTE-->
+        <article class="card">
+            <div class="card-imagem">
+                <img src="constrate.jpg"
+                     alt="Fisioterapia de Contraste" loading="lazy">
+            </div>
+            <div class="card-conteudo">
+                <h3 class="text-gradient mb-0 leading-tight text-neutral-300 text-sm sm:text-base leading-relaxed">Fisioterapia de Contraste</h3>
+
+<p class="mt-0 leading-normal">
+    A fisioterapia de contraste alterna a aplicação de água quente e fria para auxiliar na recuperação muscular, aliviar desconfortos e favorecer a circulação, sendo utilizada como complemento à recuperação física e esportiva.
+</p>
+                <a href="#procedimento-fisioterapia-de-contraste" class="botao botao-card">
+                    Saiba mais <span>›</span>
+                </a>
+            </div>
+        </article>
+
+    </div>
+
+</section>
+
+    
+    <section id="historia" class="relative py-24 overflow-hidden">
+        <div class="absolute top-1/4 left-10 w-96 h-96 bg-physio-orange/10 rounded-full blur-3xl animate-glow pointer-events-none"></div>
+        <div class="absolute  right-7 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl animate-glow pointer-events-none" style="animation-delay: 2s;"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+                <span class="text-physio-orange font-bold text-xs tracking-widest uppercase">Sobre Nós</span>
+                <h2 class="text-3xl sm:text-4xl font-black tracking-tight uppercase">Nossa <span class="text-gradient">História</span></h2>
+                <div class="w-16 h-1 bg-physio-orange mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-5 relative">
+                    <div class="absolute -inset-2 bg-gradient-to-r from-physio-orange to-amber-500 rounded-3xl blur opacity-20"></div>
+                    <div class="relative bg-physio-card rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
+                        <img id="storyImage" src="empresa.png" alt="Atendimento PhysioUp" class="w-full h-[400px] object-cover transition-all duration-500">
+                        <div class="p-4 bg-physio-dark/90 border-t border-white/10 flex items-center justify-between">
+                            <span class="text-xs font-bold text-neutral-400">IMAGENS DA CLÍNICA</span>
+                            <div class="flex gap-2">
+                               <button onclick="changeStoryImg(-1)"
+    class="w-8 h-8 rounded-full bg-white/10 hover:bg-physio-orange text-white text-xs transition-colors">
+    <i class="fa-solid fa-chevron-left"></i>
+</button>
+
+<button onclick="changeStoryImg(1)"
+    class="w-8 h-8 rounded-full bg-white/10 hover:bg-physio-orange text-white text-xs transition-colors">
+    <i class="fa-solid fa-chevron-right"></i>
+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <script>
+const storyImages = [
+    "empresa.png",
+    "pagina1.png",
+    "pagina2.png",
+    "pagina3.png",
+    "pagina4.png",
+];
+
+let storyIndex = 0;
+
+function changeStoryImg(direction) {
+    storyIndex = (storyIndex + direction + storyImages.length)
+        % storyImages.length;
+
+    document.getElementById("storyImage").src = storyImages[storyIndex];
+}
+</script>
+
+                <div class="lg:col-span-7 space-y-6 text-neutral-300 leading-relaxed text-sm sm:text-base">
+                    <p class="first-letter:text-5xl first-letter:font-black first-letter:text-physio-orange first-letter:mr-3 first-letter:float-left">
+                        A PhysioUp nasce do compromisso profundo com o bem-estar e da paixão genuína pelo cuidado humano, transformando a fisioterapia num verdadeiro ato de dedicação à saúde e à qualidade de vida.
+                    </p>
+                    <p>
+                        Mais do que tratar sintomas ou lesões pontuais, a clínica é movida pelo amor em acolher cada paciente e pela satisfação sincera de acompanhar a superação diária daqueles que buscam recuperar a sua autonomia e liberdade de movimentos.
+                    </p>
+                    <p>
+                        Nela, a saúde é compreendida de forma integral, onde a reabilitação, a prevenção e o recovery caminham lado a lado para proteger e fortalecer o corpo em todas as fases da vida. Guiada pelo lema <strong class="text-white font-bold">"Onde o movimento encontra a evolução"</strong>, a PhysioUp une o afeto pelo ser humano à inovação e à excelência técnica, impulsionando cada pessoa a viver melhor, com mais energia, equilíbrio e plenitude.
+                    </p>
+
+                    <div class="pt-4 grid grid-cols-3 gap-4 border-t border-white/10 text-center">
+                        <div class="p-3 bg-white/5 rounded-xl border border-white/5">
+                            <div class="text-2xl font-black text-physio-orange">100%</div>
+                            <div class="text-[11px] font-medium text-neutral-400 uppercase">Dedicado</div>
+                        </div>
+                        <div class="p-3 bg-white/5 rounded-xl border border-white/5">
+                            <div class="text-2xl font-black text-amber-400">Avançado</div>
+                            <div class="text-[11px] font-medium text-neutral-400 uppercase">Recovery</div>
+                        </div>
+                        <div class="p-3 bg-white/5 rounded-xl border border-white/5">
+                            <div class="text-2xl font-black text-physio-orange">Integral</div>
+                            <div class="text-[11px] font-medium text-neutral-400 uppercase">Cuidado</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+<section id="equipe" class="relative py-24 bg-physio-dark overflow-hidden">
+
+    <!-- Brilhos pulsantes à esquerda -->
+
+    <div class="absolute top-[35%] left-0 w-64 h-64 bg-amber-500/20 rounded-full blur-3xl animate-glow pointer-events-none" style="animation-delay: 1s;"></div>
+    <div class="absolute bottom-[5%] -left-16 w-80 h-80 bg-physio-orange/20 rounded-full blur-3xl animate-glow pointer-events-none" style="animation-delay: 2s;"></div>
+
+    <!-- Brilhos pulsantes à direita -->
+    <div class="absolute top-[10%] -right-20 w-80 h-80 bg-amber-500/20 rounded-full blur-3xl animate-glow pointer-events-none" style="animation-delay: 1.5s;"></div>
+    <div class="absolute top-[50%] right-0 w-64 h-64 bg-physio-orange/20 rounded-full blur-3xl animate-glow pointer-events-none" style="animation-delay: 0.5s;"></div>
+  
+
+    <!-- Conteúdo da equipe -->
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+                <span class="text-physio-orange font-bold text-xs tracking-widest uppercase">Especialistas</span>
+                <h2 class="text-3xl sm:text-4xl font-black tracking-tight uppercase">Nossa <span class="text-gradient">Equipe</span></h2>
+                <p class="text-neutral-400 text-sm">Profissionais qualificados e apaixonados pelo movimento humano.</p>
+                <div class="w-16 h-1 bg-physio-orange mx-auto rounded-full"></div>
+            </div>
+
+            <!-- FOTO OFICIAL DA EQUIPE -->
+            <div class="max-w-4xl mx-auto mb-12">
+                <div class="relative bg-physio-card rounded-3xl overflow-hidden border border-white/10 shadow-2xl group">
+                    <div class="absolute inset-0 bg-gradient-to-t from-physio-dark via-transparent to-transparent z-10 opacity-60"></div>
+                    <img src="Phisio.jpg" alt="Equipe PhysioUp" class="w-full h-[300px] sm:h-[420px] lg:h-[560px] object-cover group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute bottom-0 inset-x-0 p-6 sm:p-8 z-20 bg-gradient-to-t from-physio-dark via-physio-dark/80 to-transparent flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+                        <div>
+                            <span class="px-3 py-1 rounded-full bg-physio-orange/20 border border-physio-orange/40 text-physio-orange text-[10px] sm:text-xs font-bold uppercase tracking-widest">
+                                Excelência e Dedicação
+                            </span>
+                            <h3 class="text-xl sm:text-2xl font-black text-white mt-2">Time PhysioUp</h3>
+                            <p class="text-xs sm:text-sm text-neutral-300 mt-1">Comprometidos em impulsionar a sua melhor versão física todos os dias.</p>
+                        </div>
+                        </div>
+                </div>
+            </div>
+
+            <!-- GRID COM OS 4 ESPECIALISTAS -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                
+                <!-- Doutor(a) 1 -->
+                <div class="bg-physio-card rounded-2xl overflow-hidden border border-white/10 group flex flex-col">
+                    <div class="h-60 bg-neutral-800 overflow-hidden relative">
+                        <img src="laynepereira.png" alt="Fisioterapeuta" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-physio-card via-transparent to-transparent"></div>
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between gap-2">
+                                <h3 class="text-base font-bold text-white">Dra. Layne Pereira</h3>
+                                <a href="https://www.instagram.com/dra.laynepereira/" target="_blank" class="text-neutral-400 hover:text-physio-orange transition-colors text-lg" title="Instagram profissional">
+                                    <i class="fa-brands fa-instagram"></i>
+                                </a>
+                            </div>
+                            <p class="text-xs font-semibold text-physio-orange mb-2">Fisioterapeuta Manual </p>
+                            <p class="text-neutral-400 text-xs leading-relaxed">Especialista em terapia Manual.Pós-operatório facial
+Pós graduada em ortopedia e traumatologia.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Doutor(a) 2 -->
+                <div class="bg-physio-card rounded-2xl overflow-hidden border border-white/10 group flex flex-col">
+                    <div class="h-60 bg-neutral-800 overflow-hidden relative">
+                        <img src="NatanaelBentes.png" alt="Fisioterapeuta" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-physio-card via-transparent to-transparent"></div>
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between gap-2">
+                                <h3 class="text-base font-bold text-white">Dr. Natanael Bentes</h3>
+                                <a href="https://www.instagram.com/natanaelbentes_/" target="_blank" class="text-neutral-400 hover:text-physio-orange transition-colors text-lg" title="Instagram profissional">
+                                    <i class="fa-brands fa-instagram"></i>
+                                </a>
+                            </div>
+                            <p class="text-xs font-semibold text-amber-400 mb-2">Fisioterapeuta Esportivo</p>
+                            <p class="text-neutral-400 text-xs leading-relaxed">Pós graduado em fisioterapia pediátrica e neonatal.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Doutor(a) 3 -->
+                <div class="bg-physio-card rounded-2xl overflow-hidden border border-white/10 group flex flex-col">
+                    <div class="h-60 bg-neutral-800 overflow-hidden relative">
+                        <img src="LucasNormando.png" alt="Fisioterapeuta" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-physio-card via-transparent to-transparent"></div>
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between gap-2">
+                                <h3 class="text-base font-bold text-white">Dr. Lucas Normando</h3>
+                                <a href="https://www.instagram.com/lucasnormando_/" target="_blank" class="text-neutral-400 hover:text-physio-orange transition-colors text-lg" title="Instagram profissional">
+                                    <i class="fa-brands fa-instagram"></i>
+                                </a>
+                            </div>
+                            <p class="text-xs font-semibold text-physio-orange mb-2">Fisioterapeuta</p>
+                            <p class="text-neutral-400 text-xs leading-relaxed">Mestre Ciências da Saúde| Esp. Biomecânica e Fisiologia do Exercício.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Doutor(a) 4 -->
+                <div class="bg-physio-card rounded-2xl overflow-hidden border border-white/10 group flex flex-col">
+                    <div class="h-60 bg-neutral-800 overflow-hidden relative">
+                        <img src="joaodantas.png" alt="Fisioterapeuta" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-physio-card via-transparent to-transparent"></div>
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between gap-2">
+                                <h3 class="text-base font-bold text-white">Dr. João Dantas</h3>
+                                <a href="https://www.instagram.com/j_dantas98/" target="_blank" class="text-neutral-400 hover:text-physio-orange transition-colors text-lg" title="Instagram profissional">
+                                    <i class="fa-brands fa-instagram"></i>
+                                </a>
+                            </div>
+                            <p class="text-xs font-semibold text-amber-400 mb-2">Especialista em Recovery</p>
+                            <p class="text-neutral-400 text-xs leading-relaxed">Pós-Graduando em Ortopedia & Traumatologia.
+Quiropraxia- Ajustes Clínicos.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO DE PROCEDIMENTOS -->
+
+<!-- SEÇÃO DE PROCEDIMENTOS -->
+<section id="procedimentos" class="py-24 bg-physio-dark relative overflow-hidden">
+
+    <!-- PULSAÇÕES LARANJAS À ESQUERDA -->
+    <div class="absolute top-[4%] -left-24 w-80 h-80 bg-physio-orange/20 rounded-full blur-3xl animate-glow pointer-events-none"></div>
+
+    <div class="absolute top-[22%] left-0 w-64 h-64 bg-amber-500/15 rounded-full blur-3xl animate-glow pointer-events-none" style="animation-delay: 1s;"></div>
+
+    <div class="absolute top-[43%] -left-16 w-80 h-80 bg-physio-orange/20 rounded-full blur-3xl animate-glow pointer-events-none" style="animation-delay: 2s;"></div>
+
+    <div class="absolute top-[67%] left-0 w-64 h-64 bg-amber-500/15 rounded-full blur-3xl animate-glow pointer-events-none" style="animation-delay: 0.5s;"></div>
+
+    <div class="absolute bottom-[2%] -left-20 w-80 h-80 bg-physio-orange/20 rounded-full blur-3xl animate-glow pointer-events-none" style="animation-delay: 1.5s;"></div>
+
+
+    <!-- PULSAÇÕES LARANJAS À DIREITA -->
+    <div class="absolute top-[10%] -right-24 w-80 h-80 bg-amber-500/20 rounded-full blur-3xl animate-glow pointer-events-none" style="animation-delay: 1.5s;"></div>
+
+    <div class="absolute top-[31%] right-0 w-64 h-64 bg-physio-orange/15 rounded-full blur-3xl animate-glow pointer-events-none" style="animation-delay: 2.5s;"></div>
+
+    <div class="absolute top-[53%] -right-16 w-80 h-80 bg-amber-500/20 rounded-full blur-3xl animate-glow pointer-events-none" style="animation-delay: 0.8s;"></div>
+
+    <div class="absolute top-[77%] right-0 w-64 h-64 bg-physio-orange/15 rounded-full blur-3xl animate-glow pointer-events-none" style="animation-delay: 1.8s;"></div>
+
+    <div class="absolute bottom-[1%] -right-20 w-80 h-80 bg-amber-500/20 rounded-full blur-3xl animate-glow pointer-events-none" style="animation-delay: 0.3s;"></div>
+
+
+    <!-- CONTEÚDO ORIGINAL DOS PROCEDIMENTOS -->
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <!-- MANTENHA AQUI TODO O SEU CÓDIGO ORIGINAL,
+             DESDE O TÍTULO ATÉ O OITAVO PROCEDIMENTO -->
+
+        <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+            <span class="text-physio-orange font-bold text-xs tracking-widest uppercase">Especialidades</span>
+            <h2 class="text-3xl sm:text-4xl font-black tracking-tight uppercase">
+                Nossos <span class="text-gradient">Procedimentos</span>
+            </h2>
+            <p class="text-neutral-400 text-sm">
+                Conheça todas as nossas especialidades para a sua recuperação e alta performance.
+            </p>
+            <div class="w-16 h-1 bg-physio-orange mx-auto rounded-full"></div>
+        </div>
+
+        <div class="space-y-12">
+
+<!-- OS PROCEDIMENTOS -->
+
+<!-- 1. LIBERAÇÃO MIOFASCIAL -->
+<div id="procedimento-liberacao-miofascial" class="bg-card-gradient rounded-2xl p-6 sm:p-10 border-glow grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+
+    <!-- INFORMAÇÕES DO PROCEDIMENTO -->
+    <div class="lg:col-span-7 space-y-6">
+
+        <!-- CABEÇALHO -->
+        <div class="flex flex-wrap items-center gap-4">
+            <span class="inline-block px-3 py-1 rounded-full bg-physio-orange/10 border border-physio-orange/30 text-physio-orange text-xs font-bold uppercase tracking-widest">
+                Procedimento 01
+            </span>
+
+            <span class="text-xs text-neutral-400 uppercase tracking-wider">
+                Mais mobilidade <span class="text-physio-orange">•</span>
+                Menos dor <span class="text-physio-orange">•</span>
+                Mais qualidade de vida
+            </span>
+        </div>
+
+        <h3 class="text-2xl sm:text-4xl font-bold uppercase tracking-wide text-white">
+            Liberação Miofascial
+        </h3>
+
+        <p class="text-neutral-300 text-sm sm:text-base leading-relaxed">
+            Você sente dores musculares, tensão ou rigidez no corpo?
+            A liberação miofascial é uma técnica que ajuda a aliviar
+            esses desconfortos e melhorar a mobilidade.
+        </p>
+
+        <p class="text-neutral-300 text-sm sm:text-base leading-relaxed">
+            Por meio de pressões aplicadas em regiões específicas,
+            o tratamento auxilia no relaxamento muscular, na flexibilidade
+            e na recuperação após atividades físicas.
+        </p>
+
+        <!-- INDICAÇÃO E DURAÇÃO -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 py-5 border-y border-white/10">
+
+            <div class="flex items-start gap-4">
+                <i class="fa-solid fa-person text-3xl text-physio-orange mt-1"></i>
+
+                <div>
+                    <h4 class="text-sm font-bold text-white uppercase tracking-wider mb-2">
+                        Indicação
+                    </h4>
+                    <p class="text-sm text-neutral-400 leading-relaxed">
+                    Ideal para pessoas que sofrem com dores musculares causadas por estresse, rotina intensa de treinos, má postura no trabalho ou limitações de movimento no dia a dia.
+                    </p>
+                </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+                <i class="fa-regular fa-clock text-3xl text-physio-orange mt-1"></i>
+
+                <div>
+                    <h4 class="text-sm font-bold text-white uppercase tracking-wider mb-2">
+                        Duração da sessão
+                    </h4>
+                    <p class="text-sm text-neutral-400 leading-relaxed">
+                       De 30 a 60 minutos por atendimento, variando conforme o local e ao objetivo.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- BENEFÍCIOS -->
+        <div class="space-y-4">
+            <h4 class="text-sm font-bold text-white uppercase tracking-widest">
+                Principais benefícios
+            </h4>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-5 gap-y-4">
+
+                <div class="flex items-start gap-3">
+                    <i class="fa-regular fa-circle-check text-physio-orange mt-1"></i>
+                    <span class="text-sm text-neutral-300">
+                        Alívio de dores e desconfortos musculares.
+                    </span>
+                </div>
+
+                <div class="flex items-start gap-3">
+                    <i class="fa-regular fa-circle-check text-physio-orange mt-1"></i>
+                    <span class="text-sm text-neutral-300">
+                        Mais facilidade nos movimentos do dia a dia.
+                    </span>
+                </div>
+
+                <div class="flex items-start gap-3">
+                    <i class="fa-regular fa-circle-check text-physio-orange mt-1"></i>
+                    <span class="text-sm text-neutral-300">
+                        Redução da sensação de rigidez muscular.
+                    </span>
+                </div>
+
+                <div class="flex items-start gap-3">
+                    <i class="fa-regular fa-circle-check text-physio-orange mt-1"></i>
+                    <span class="text-sm text-neutral-300">
+                        Auxílio na recuperação após exercícios físicos.
+                    </span>
+                </div>
+
+                <div class="flex items-start gap-3">
+                    <i class="fa-regular fa-circle-check text-physio-orange mt-1"></i>
+                    <span class="text-sm text-neutral-300">
+                        Melhora da flexibilidade e da mobilidade.
+                    </span>
+                </div>
+
+                <div class="flex items-start gap-3">
+                    <i class="fa-regular fa-circle-check text-physio-orange mt-1"></i>
+                    <span class="text-sm text-neutral-300">
+                        Relaxamento e bem-estar físico.
+                    </span>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- BOTÃO DE AGENDAMENTO -->
+        <div class="pt-1">
+            
+
+<a
+  href="https://wa.me/559291502026?text=Ol%C3%A1%21%20Gostaria%20de%20agendar%20uma%20sess%C3%A3o%20de%20Libera%C3%A7%C3%A3o%20Miofascial%20na%20PhysioUp.%20Poderia%20me%20informar%20os%20hor%C3%A1rios%20dispon%C3%ADveis%3F"
+  target="_blank"
+  rel="noopener noreferrer"
+  class="inline-flex items-center justify-center gap-3 px-6 py-4 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-sm uppercase tracking-wide transition-all duration-300 hover:scale-[1.02]"
+>
+  <i class="fa-brands fa-whatsapp text-xl"></i>
+  Agendar este procedimento
+  <i class="fa-solid fa-arrow-right"></i>
+</a>
+
+
+        </div>
+
+    </div>
+
+    <!-- IMAGEM DO PROCEDIMENTO -->
+    <div class="lg:col-span-5 relative rounded-xl overflow-hidden border border-white/10 shadow-xl min-h-[320px] sm:min-h-[480px] lg:h-full">
+
+        <img
+            src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=900&q=85"
+            alt="Atendimento de massagem terapêutica"
+            loading="lazy"
+            class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+        >
+
+        <!-- INFORMAÇÃO SOBRE A TÉCNICA -->
+        <div class="absolute bottom-0 left-0 right-0 p-4 sm:p-5 bg-neutral-950/90 backdrop-blur-sm border-t border-physio-orange/50">
+
+            <div class="flex items-center gap-4">
+                <i class="fa-solid fa-leaf text-3xl text-physio-orange"></i>
+
+                <div>
+                    <h4 class="text-xs sm:text-sm font-bold text-white uppercase tracking-wider mb-1">
+                        Técnica fisioterapêutica
+                    </h4>
+                    <p class="text-xs sm:text-sm text-neutral-300 leading-relaxed">
+                        Uma abordagem voltada ao alívio da tensão muscular e à melhora da mobilidade.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+               
+<!-- 2. DRY NEEDLING -->
+<div id="procedimento-dry-needling" class="bg-card-gradient rounded-2xl p-6 sm:p-10 border-glow grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+
+    <!-- IMAGEM DO PROCEDIMENTO -->
+    <div class="lg:col-span-5 relative rounded-xl overflow-hidden border border-white/10 shadow-xl min-h-[320px] sm:min-h-[480px] lg:h-full order-2 lg:order-1">
+
+        <img
+            src="dry.png"
+            alt="Procedimento de Dry Needling"
+            loading="lazy"
+            class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+        >
+
+        <!-- INFORMAÇÃO SOBRE A TÉCNICA -->
+        <div class="absolute bottom-0 left-0 right-0 p-4 sm:p-5 bg-neutral-950/90 backdrop-blur-sm border-t border-physio-orange/50">
+
+            <div class="flex items-center gap-4">
+                <i class="fa-solid fa-bullseye text-3xl text-physio-orange"></i>
+
+                <div>
+                    <h4 class="text-xs sm:text-sm font-bold text-white uppercase tracking-wider mb-1">
+                        Agulhamento a seco
+                    </h4>
+                    <p class="text-xs sm:text-sm text-neutral-300 leading-relaxed">
+                        Técnica utilizada para auxiliar no tratamento de pontos de tensão e dores musculares.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- INFORMAÇÕES DO PROCEDIMENTO -->
+    <div class="lg:col-span-7 space-y-6 order-1 lg:order-2">
+
+        <!-- CABEÇALHO -->
+        <div class="flex flex-wrap items-center gap-4">
+            <span class="inline-block px-3 py-1 rounded-full bg-physio-orange/10 border border-physio-orange/30 text-physio-orange text-xs font-bold uppercase tracking-widest">
+                Procedimento 02
+            </span>
+
+            <span class="text-xs text-neutral-400 uppercase tracking-wider">
+                Alívio da dor <span class="text-physio-orange">•</span>
+                Relaxamento muscular
+            </span>
+        </div>
+
+        <h3 class="text-2xl sm:text-4xl font-bold uppercase tracking-wide text-white">
+            Dry Needling
+        </h3>
+
+        <p class="text-neutral-300 text-sm sm:text-base leading-relaxed">
+            Você sente dores musculares persistentes ou pontos de tensão que dificultam seus movimentos?
+            O Dry Needling, também conhecido como agulhamento a seco, é uma técnica que pode ajudar a aliviar esses desconfortos.
+        </p>
+
+        <p class="text-neutral-300 text-sm sm:text-base leading-relaxed">
+            O procedimento utiliza agulhas finas aplicadas em pontos específicos dos músculos, com o objetivo de reduzir a dor e melhorar a função muscular.
+        </p>
+
+        <!-- INDICAÇÃO E DURAÇÃO -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 py-5 border-y border-white/10">
+
+            <div class="flex items-start gap-4">
+                <i class="fa-solid fa-person-circle-exclamation text-3xl text-physio-orange mt-1"></i>
+
+                <div>
+                    <h4 class="text-sm font-bold text-white uppercase tracking-wider mb-2">
+                        Indicação
+                    </h4>
+                    <p class="text-sm text-neutral-400 leading-relaxed">
+                        Pontos de tensão, dores musculares e desconfortos que limitam os movimentos.
+                    </p>
+                </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+                <i class="fa-regular fa-clock text-3xl text-physio-orange mt-1"></i>
+
+                <div>
+                    <h4 class="text-sm font-bold text-white uppercase tracking-wider mb-2">
+                        Duração da sessão
+                    </h4>
+                    <p class="text-sm text-neutral-400 leading-relaxed">
+                     30 a 45 minutos, podendo variar conforme a quantidade de pontos tratados e a necessidade de cada paciente.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- BENEFÍCIOS -->
+        <div class="space-y-4">
+            <h4 class="text-sm font-bold text-white uppercase tracking-widest">
+                Principais benefícios
+            </h4>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-5 gap-y-4">
+
+                <div class="flex items-start gap-3">
+                    <i class="fa-regular fa-circle-check text-physio-orange mt-1"></i>
+                    <span class="text-sm text-neutral-300">
+                        Alívio de dores musculares.
+                    </span>
+                </div>
+
+                <div class="flex items-start gap-3">
+                    <i class="fa-regular fa-circle-check text-physio-orange mt-1"></i>
+                    <span class="text-sm text-neutral-300">
+                        Redução da tensão muscular.
+                    </span>
+                </div>
+
+                <div class="flex items-start gap-3">
+                    <i class="fa-regular fa-circle-check text-physio-orange mt-1"></i>
+                    <span class="text-sm text-neutral-300">
+                        Melhora da mobilidade.
+                    </span>
+                </div>
+
+                <div class="flex items-start gap-3">
+                    <i class="fa-regular fa-circle-check text-physio-orange mt-1"></i>
+                    <span class="text-sm text-neutral-300">
+                        Alívio de pontos dolorosos.
+                    </span>
+                </div>
+
+                <div class="flex items-start gap-3">
+                    <i class="fa-regular fa-circle-check text-physio-orange mt-1"></i>
+                    <span class="text-sm text-neutral-300">
+                        Mais facilidade nos movimentos.
+                    </span>
+                </div>
+
+                <div class="flex items-start gap-3">
+                    <i class="fa-regular fa-circle-check text-physio-orange mt-1"></i>
+                    <span class="text-sm text-neutral-300">
+                        Auxílio na recuperação muscular.
+                    </span>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- BOTÃO DE AGENDAMENTO -->
+        <div class="pt-1">
+           
+<a
+  href="https://wa.me/559291502026?text=Ol%C3%A1%21%20Gostaria%20de%20agendar%20uma%20sess%C3%A3o%20de%20Dry%20Needling%20na%20PhysioUp.%20Poderia%20me%20informar%20os%20hor%C3%A1rios%20dispon%C3%ADveis%3F"
+  target="_blank"
+  rel="noopener noreferrer"
+  class="inline-flex items-center justify-center gap-3 px-6 py-4 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-sm uppercase tracking-wide transition-all duration-300 hover:scale-[1.02]"
+>
+  <i class="fa-brands fa-whatsapp text-xl"></i>
+  Agendar este procedimento
+  <i class="fa-solid fa-arrow-right"></i>
+</a>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+               
+<!-- 3. VENTOSATERAPIA -->
+<div id="procedimento-ventosaterapia" class="bg-card-gradient rounded-2xl p-6 sm:p-10 border-glow grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+
+    <!-- INFORMAÇÕES DO PROCEDIMENTO -->
+    <div class="lg:col-span-7 space-y-6">
+
+        <!-- CABEÇALHO -->
+        <div class="flex flex-wrap items-center gap-4">
+            <span class="inline-block px-3 py-1 rounded-full bg-physio-orange/10 border border-physio-orange/30 text-physio-orange text-xs font-bold uppercase tracking-widest">
+                Procedimento 03
+            </span>
+
+            <span class="text-xs text-neutral-400 uppercase tracking-wider">
+                Relaxamento <span class="text-physio-orange">•</span>
+                Alívio muscular
+            </span>
+        </div>
+
+        <h3 class="text-2xl sm:text-4xl font-bold uppercase tracking-wide text-white">
+            Ventosaterapia
+        </h3>
+
+        <p class="text-neutral-300 text-sm sm:text-base leading-relaxed">
+            Você sente tensão muscular ou desconforto após uma rotina intensa?
+            A ventosaterapia utiliza ventosas aplicadas sobre a pele para criar
+            uma sucção controlada, podendo ajudar no alívio temporário de dores
+            e na sensação de relaxamento.
+        </p>
+
+        <p class="text-neutral-300 text-sm sm:text-base leading-relaxed">
+            A aplicação é adaptada à região tratada e às necessidades de cada paciente,
+            sempre respeitando os cuidados necessários com a pele.
+        </p>
+
+        <!-- INDICAÇÃO E DURAÇÃO -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 py-5 border-y border-white/10">
+
+            <div class="flex items-start gap-4">
+                <i class="fa-solid fa-person text-3xl text-physio-orange mt-1"></i>
+
+                <div>
+                    <h4 class="text-sm font-bold text-white uppercase tracking-wider mb-2">
+                        Indicação
+                    </h4>
+
+                    <p class="text-sm text-neutral-400 leading-relaxed">
+                        Tensão muscular, desconfortos físicos e dores que precisam de avaliação.
+                    </p>
+                </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+                <i class="fa-regular fa-clock text-3xl text-physio-orange mt-1"></i>
+
+                <div>
+                    <h4 class="text-sm font-bold text-white uppercase tracking-wider mb-2">
+                        Duração da sessão
+                    </h4>
+
+                    <p class="text-sm text-neutral-400 leading-relaxed">
+                       20 a 40 minutos, podendo variar conforme a região tratada e a necessidade de cada paciente.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- BENEFÍCIOS -->
+        <div class="space-y-4">
+
+            <h4 class="text-sm font-bold text-white uppercase tracking-widest">
+                Principais benefícios
+            </h4>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-5 gap-y-4">
+
+                <div class="flex items-start gap-3">
+                    <i class="fa-regular fa-circle-check text-physio-orange mt-1"></i>
+                    <span class="text-sm text-neutral-300">
+                        Alívio temporário de dores musculares.
+                    </span>
+                </div>
+
+                <div class="flex items-start gap-3">
+                    <i class="fa-regular fa-circle-check text-physio-orange mt-1"></i>
+                    <span class="text-sm text-neutral-300">
+                        Sensação de relaxamento muscular.
+                    </span>
+                </div>
+
+                <div class="flex items-start gap-3">
+                    <i class="fa-regular fa-circle-check text-physio-orange mt-1"></i>
+                    <span class="text-sm text-neutral-300">
+                        Redução da sensação de tensão.
+                    </span>
+                </div>
+
+                <div class="flex items-start gap-3">
+                    <i class="fa-regular fa-circle-check text-physio-orange mt-1"></i>
+                    <span class="text-sm text-neutral-300">
+                        Possível melhora do conforto ao se movimentar.
+                    </span>
+                </div>
+
+                <div class="flex items-start gap-3">
+                    <i class="fa-regular fa-circle-check text-physio-orange mt-1"></i>
+                    <span class="text-sm text-neutral-300">
+                        Auxílio no alívio de desconfortos após esforços físicos.
+                    </span>
+                </div>
+
+                <div class="flex items-start gap-3">
+                    <i class="fa-regular fa-circle-check text-physio-orange mt-1"></i>
+                    <span class="text-sm text-neutral-300">
+                        Sensação de bem-estar físico.
+                    </span>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- AVALIAÇÃO PERSONALIZADA -->
+        <div class="flex items-start gap-4 p-4 rounded-xl border border-white/10 bg-black/10">
+
+            <i class="fa-solid fa-clipboard-check text-2xl text-physio-orange mt-1"></i>
+
+            <div>
+                <h4 class="text-sm font-bold text-white uppercase tracking-wider mb-2">
+                    Avaliação personalizada
+                </h4>
+
+                <p class="text-sm text-neutral-400 leading-relaxed">
+                    A aplicação é ajustada às necessidades de cada paciente.
+                    Podem surgir marcas temporárias na pele, por isso a técnica
+                    exige avaliação e cuidados específicos.
+                </p>
+            </div>
+        </div>
+
+        <!-- BOTÃO DE AGENDAMENTO -->
+        <div class="pt-1">
+           
+<a
+  href="https://wa.me/559291502026?text=Ol%C3%A1%21%20Gostaria%20de%20agendar%20uma%20sess%C3%A3o%20de%20Ventosaterapia%20na%20PhysioUp.%20Poderia%20me%20informar%20os%20hor%C3%A1rios%20dispon%C3%ADveis%3F"
+  target="_blank"
+  rel="noopener noreferrer"
+  class="inline-flex items-center justify-center gap-3 px-6 py-4 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-sm uppercase tracking-wide transition-all duration-300 hover:scale-[1.02]"
+>
+  <i class="fa-brands fa-whatsapp text-xl"></i>
+  Agendar este procedimento
+  <i class="fa-solid fa-arrow-right"></i>
+</a>
+
+        </div>
+
+    </div>
+
+    <!-- IMAGEM DO PROCEDIMENTO -->
+    <div class="lg:col-span-5 relative rounded-xl overflow-hidden border border-white/10 shadow-xl min-h-[320px] sm:min-h-[480px] lg:h-full">
+
+        <img
+            src="ventosaterapia.jpg"
+            alt="Aplicação de ventosaterapia durante atendimento terapêutico"
+            loading="lazy"
+            class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+        >
+
+        <!-- INFORMAÇÃO SOBRE A TÉCNICA -->
+        <div class="absolute bottom-0 left-0 right-0 p-4 sm:p-5 bg-neutral-950/90 backdrop-blur-sm border-t border-physio-orange/50">
+
+            <div class="flex items-center gap-4">
+                <i class="fa-solid fa-spa text-3xl text-physio-orange"></i>
+
+                <div>
+                    <h4 class="text-xs sm:text-sm font-bold text-white uppercase tracking-wider mb-1">
+                        Cuidado e bem-estar
+                    </h4>
+
+                    <p class="text-xs sm:text-sm text-neutral-300 leading-relaxed">
+                        Uma técnica complementar que pode auxiliar no alívio de desconfortos musculares.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+               
+<!-- 4. QUIROPRAXIA -->
+<div id="procedimento-quiropraxia" class="bg-card-gradient rounded-2xl p-6 sm:p-10 border-glow grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+
+    <!-- INFORMAÇÕES DO PROCEDIMENTO -->
+    <div class="lg:col-span-7 space-y-6">
+
+        <!-- CABEÇALHO -->
+        <div class="flex flex-wrap items-center gap-4">
+            <span class="inline-block px-3 py-1 rounded-full bg-physio-orange/10 border border-physio-orange/30 text-physio-orange text-xs font-bold uppercase tracking-widest">
+                Procedimento 04
+            </span>
+
+            <span class="text-xs text-neutral-400 uppercase tracking-wider">
+                Mobilidade <span class="text-physio-orange">•</span>
+                Cuidado articular
+            </span>
+        </div>
+
+        <h3 class="text-2xl sm:text-4xl font-bold uppercase tracking-wide text-white">
+            Quiropraxia
+        </h3>
+
+        <p class="text-neutral-300 text-sm sm:text-base leading-relaxed">
+            Você sente dores na coluna, rigidez ou dificuldade para realizar determinados movimentos?
+            A quiropraxia utiliza técnicas manuais direcionadas ao sistema musculoesquelético,
+            especialmente à coluna vertebral e às articulações, podendo auxiliar no alívio
+            de alguns desconfortos e na melhora da mobilidade.
+        </p>
+
+        <p class="text-neutral-300 text-sm sm:text-base leading-relaxed">
+            As técnicas são selecionadas conforme as necessidades de cada paciente,
+            após avaliação individualizada e identificação de possíveis contraindicações.
+        </p>
+
+        <!-- INDICAÇÃO E DURAÇÃO -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 py-5 border-y border-white/10">
+
+            <div class="flex items-start gap-4">
+                <i class="fa-solid fa-person text-3xl text-physio-orange mt-1"></i>
+
+                <div>
+                    <h4 class="text-sm font-bold text-white uppercase tracking-wider mb-2">
+                        Indicação
+                    </h4>
+
+                    <p class="text-sm text-neutral-400 leading-relaxed">
+                        Alguns casos de dor na coluna ou no pescoço, rigidez e redução da mobilidade, conforme avaliação profissional.
+                    </p>
+                </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+                <i class="fa-regular fa-clock text-3xl text-physio-orange mt-1"></i>
+
+                <div>
+                    <h4 class="text-sm font-bold text-white uppercase tracking-wider mb-2">
+                        Duração da sessão
+                    </h4>
+
+                    <p class="text-sm text-neutral-400 leading-relaxed">
+                       30 a 60 minutos, podendo variar conforme a avaliação, as técnicas utilizadas e a necessidade de cada paciente.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- BENEFÍCIOS -->
+        <div class="space-y-4">
+
+            <h4 class="text-sm font-bold text-white uppercase tracking-widest">
+                Principais benefícios
+            </h4>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-5 gap-y-4">
+
+                <div class="flex items-start gap-3">
+                    <i class="fa-regular fa-circle-check text-physio-orange mt-1"></i>
+                    <span class="text-sm text-neutral-300">
+                        Pode auxiliar no alívio de algumas dores musculoesqueléticas.
+                    </span>
+                </div>
+
+                <div class="flex items-start gap-3">
+                    <i class="fa-regular fa-circle-check text-physio-orange mt-1"></i>
+                    <span class="text-sm text-neutral-300">
+                        Pode favorecer a mobilidade das articulações.
+                    </span>
+                </div>
+
+                <div class="flex items-start gap-3">
+                    <i class="fa-regular fa-circle-check text-physio-orange mt-1"></i>
+                    <span class="text-sm text-neutral-300">
+                        Pode ajudar a reduzir a sensação de rigidez.
+                    </span>
+                </div>
+
+                <div class="flex items-start gap-3">
+                    <i class="fa-regular fa-circle-check text-physio-orange mt-1"></i>
+                    <span class="text-sm text-neutral-300">
+                        Pode facilitar determinados movimentos do dia a dia.
+                    </span>
+                </div>
+
+                <div class="flex items-start gap-3">
+                    <i class="fa-regular fa-circle-check text-physio-orange mt-1"></i>
+                    <span class="text-sm text-neutral-300">
+                        Pode contribuir para melhorar a funcionalidade em alguns casos.
+                    </span>
+                </div>
+
+                <div class="flex items-start gap-3">
+                    <i class="fa-regular fa-circle-check text-physio-orange mt-1"></i>
+                    <span class="text-sm text-neutral-300">
+                        Pode auxiliar na recuperação da mobilidade, conforme cada caso.
+                    </span>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- AVALIAÇÃO PERSONALIZADA -->
+        <div class="flex items-start gap-4 p-4 rounded-xl border border-white/10 bg-black/10">
+
+            <i class="fa-solid fa-clipboard-check text-2xl text-physio-orange mt-1"></i>
+
+            <div>
+                <h4 class="text-sm font-bold text-white uppercase tracking-wider mb-2">
+                    Avaliação personalizada
+                </h4>
+
+                <p class="text-sm text-neutral-400 leading-relaxed">
+                    O atendimento considera o histórico, as condições físicas e as necessidades
+                    de cada paciente. As técnicas devem ser aplicadas por profissional qualificado,
+                    com atenção especial às contraindicações e à segurança do procedimento.
+                </p>
+            </div>
+        </div>
+
+        <!-- BOTÃO DE AGENDAMENTO -->
+        <div class="pt-1">
+            
+<a
+  href="https://wa.me/559291502026?text=Ol%C3%A1%21%20Gostaria%20de%20agendar%20uma%20sess%C3%A3o%20de%20Quiropraxia%20na%20PhysioUp.%20Poderia%20me%20informar%20os%20hor%C3%A1rios%20dispon%C3%ADveis%3F"
+  target="_blank"
+  rel="noopener noreferrer"
+  class="inline-flex items-center justify-center gap-3 px-6 py-4 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-sm uppercase tracking-wide transition-all duration-300 hover:scale-[1.02]"
+>
+  <i class="fa-brands fa-whatsapp text-xl"></i>
+  Agendar este procedimento
+  <i class="fa-solid fa-arrow-right"></i>
+</a>
+
+        </div>
+
+    </div>
+
+    <!-- IMAGEM DO PROCEDIMENTO -->
+    <div class="lg:col-span-5 relative rounded-xl overflow-hidden border border-white/10 shadow-xl min-h-[320px] sm:min-h-[480px] lg:h-full">
+
+        <img
+            src="quiropraxia.jpg"
+            alt="Atendimento de quiropraxia"
+            loading="lazy"
+            class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+        >
+
+        <!-- INFORMAÇÃO SOBRE A TÉCNICA -->
+        <div class="absolute bottom-0 left-0 right-0 p-4 sm:p-5 bg-neutral-950/90 backdrop-blur-sm border-t border-physio-orange/50">
+
+            <div class="flex items-center gap-4">
+                <i class="fa-solid fa-spa text-3xl text-physio-orange"></i>
+
+                <div>
+                    <h4 class="text-xs sm:text-sm font-bold text-white uppercase tracking-wider mb-1">
+                        Cuidado e mobilidade
+                    </h4>
+
+                    <p class="text-xs sm:text-sm text-neutral-300 leading-relaxed">
+                        Técnicas manuais individualizadas, com foco na mobilidade e no cuidado musculoesquelético.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+                
+<!-- 5. BOTA PNEUMÁTICA -->
+<div id="procedimento-bota-pneumatica" class="bg-card-gradient rounded-2xl p-6 sm:p-10 border-glow grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+
+    <!-- INFORMAÇÕES DO PROCEDIMENTO -->
+    <div class="lg:col-span-7 space-y-6">
+
+        <!-- CABEÇALHO -->
+        <div class="flex flex-wrap items-center gap-4">
+            <span class="inline-block px-3 py-1 rounded-full bg-physio-orange/10 border border-physio-orange/30 text-physio-orange text-xs font-bold uppercase tracking-widest">
+                Procedimento 05
+            </span>
+
+            <span class="text-xs text-neutral-400 uppercase tracking-wider">
+                Recuperação <span class="text-physio-orange">•</span>
+                Compressão pneumática
+            </span>
+        </div>
+
+        <h3 class="text-2xl sm:text-4xl font-bold uppercase tracking-wide text-white">
+            Bota Pneumática
+        </h3>
+
+        <p class="text-neutral-300 text-sm sm:text-base leading-relaxed">
+            Você sente as pernas cansadas após uma rotina intensa ou atividades físicas?
+            A bota pneumática utiliza câmaras de ar que inflam e desinflam de forma
+            sequencial, aplicando pressão controlada nas pernas para auxiliar a
+            movimentação dos fluidos nos membros inferiores.
+        </p>
+
+        <p class="text-neutral-300 text-sm sm:text-base leading-relaxed">
+            A intensidade e o tempo de aplicação são ajustados conforme os objetivos
+            do atendimento, as necessidades de cada paciente e a orientação profissional.
+        </p>
+
+        <!-- INDICAÇÃO E DURAÇÃO -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 py-5 border-y border-white/10">
+
+            <div class="flex items-start gap-4">
+                <i class="fa-solid fa-person text-3xl text-physio-orange mt-1"></i>
+
+                <div>
+                    <h4 class="text-sm font-bold text-white uppercase tracking-wider mb-2">
+                        Indicação
+                    </h4>
+
+                    <p class="text-sm text-neutral-400 leading-relaxed">
+                        Sensação de pernas cansadas e recuperação após exercícios, conforme avaliação profissional.
+                    </p>
+                </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+                <i class="fa-regular fa-clock text-3xl text-physio-orange mt-1"></i>
+
+                <div>
+                    <h4 class="text-sm font-bold text-white uppercase tracking-wider mb-2">
+                        Duração da sessão
+                    </h4>
+
+                    <p class="text-sm text-neutral-400 leading-relaxed">
+                      20 a 30 minutos, podendo variar conforme o protocolo utilizado e a necessidade de cada paciente.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- BENEFÍCIOS -->
+        <div class="space-y-4">
+
+            <h4 class="text-sm font-bold text-white uppercase tracking-widest">
+                Principais benefícios
+            </h4>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-5 gap-y-4">
+
+                <div class="flex items-start gap-3">
+                    <i class="fa-regular fa-circle-check text-physio-orange mt-1"></i>
+                    <span class="text-sm text-neutral-300">
+                        Pode aliviar a sensação de pernas cansadas.
+                    </span>
+                </div>
+
+                <div class="flex items-start gap-3">
+                    <i class="fa-regular fa-circle-check text-physio-orange mt-1"></i>
+                    <span class="text-sm text-neutral-300">
+                        Pode auxiliar a circulação venosa e linfática em situações específicas.
+                    </span>
+                </div>
+
+                <div class="flex items-start gap-3">
+                    <i class="fa-regular fa-circle-check text-physio-orange mt-1"></i>
+                    <span class="text-sm text-neutral-300">
+                        Pode ajudar a aliviar a sensação de inchaço em casos selecionados.
+                    </span>
+                </div>
+
+                <div class="flex items-start gap-3">
+                    <i class="fa-regular fa-circle-check text-physio-orange mt-1"></i>
+                    <span class="text-sm text-neutral-300">
+                        Pode proporcionar relaxamento após atividades físicas.
+                    </span>
+                </div>
+
+                <div class="flex items-start gap-3">
+                    <i class="fa-regular fa-circle-check text-physio-orange mt-1"></i>
+                    <span class="text-sm text-neutral-300">
+                        Pode complementar protocolos de recuperação física.
+                    </span>
+                </div>
+
+                <div class="flex items-start gap-3">
+                    <i class="fa-regular fa-circle-check text-physio-orange mt-1"></i>
+                    <span class="text-sm text-neutral-300">
+                        Proporciona compressão sequencial ajustável às necessidades do atendimento.
+                    </span>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- AVALIAÇÃO PERSONALIZADA -->
+        <div class="flex items-start gap-4 p-4 rounded-xl border border-white/10 bg-black/10">
+
+            <i class="fa-solid fa-clipboard-check text-2xl text-physio-orange mt-1"></i>
+
+            <div>
+                <h4 class="text-sm font-bold text-white uppercase tracking-wider mb-2">
+                    Avaliação personalizada
+                </h4>
+
+                <p class="text-sm text-neutral-400 leading-relaxed">
+                    A pressão e a duração são definidas individualmente. A técnica exige
+                    avaliação prévia, pois pode ser contraindicada em algumas condições,
+                    como determinados problemas vasculares ou suspeita de trombose.
+                </p>
+            </div>
+        </div>
+
+        <!-- BOTÃO DE AGENDAMENTO -->
+        <div class="pt-1">
+           
+<a
+  href="https://wa.me/559291502026?text=Ol%C3%A1%21%20Gostaria%20de%20agendar%20uma%20sess%C3%A3o%20de%20Bota%20Pneum%C3%A1tica%20na%20PhysioUp.%20Poderia%20me%20informar%20os%20hor%C3%A1rios%20dispon%C3%ADveis%3F"
+  target="_blank"
+  rel="noopener noreferrer"
+  class="inline-flex items-center justify-center gap-3 px-6 py-4 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-sm uppercase tracking-wide transition-all duration-300 hover:scale-[1.02]"
+>
+  <i class="fa-brands fa-whatsapp text-xl"></i>
+  Agendar este procedimento
+  <i class="fa-solid fa-arrow-right"></i>
+</a>
+
+        </div>
+
+    </div>
+
+    <!-- IMAGEM DO PROCEDIMENTO -->
+    <div class="lg:col-span-5 relative rounded-xl overflow-hidden border border-white/10 shadow-xl min-h-[320px] sm:min-h-[480px] lg:h-full">
+
+        <img
+            src="bota.png"
+            alt="Equipamento de compressão pneumática para as pernas"
+            loading="lazy"
+            class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+        >
+
+        <!-- INFORMAÇÃO SOBRE A TÉCNICA -->
+        <div class="absolute bottom-0 left-0 right-0 p-4 sm:p-5 bg-neutral-950/90 backdrop-blur-sm border-t border-physio-orange/50">
+
+            <div class="flex items-center gap-4">
+                <i class="fa-solid fa-heart-pulse text-3xl text-physio-orange"></i>
+
+                <div>
+                    <h4 class="text-xs sm:text-sm font-bold text-white uppercase tracking-wider mb-1">
+                        Recuperação e bem-estar
+                    </h4>
+
+                    <p class="text-xs sm:text-sm text-neutral-300 leading-relaxed">
+                        Compressão pneumática que pode complementar cuidados de recuperação física.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+               
+<!-- 6. BANHEIRA DE GELO -->
+<div id="procedimento-banheira-de-gelo" class="bg-card-gradient rounded-2xl p-6 sm:p-10 border-glow grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+
+    <!-- INFORMAÇÕES DO PROCEDIMENTO -->
+    <div class="lg:col-span-7 space-y-6">
+
+        <!-- CABEÇALHO -->
+        <div class="flex flex-wrap items-center gap-4">
+            <span class="inline-block px-3 py-1 rounded-full bg-physio-orange/10 border border-physio-orange/30 text-physio-orange text-xs font-bold uppercase tracking-widest">
+                Procedimento 06
+            </span>
+
+            <span class="text-xs text-neutral-400 uppercase tracking-wider">
+                Recuperação <span class="text-physio-orange">•</span>
+                Imersão em água fria
+            </span>
+        </div>
+
+        <h3 class="text-2xl sm:text-4xl font-bold uppercase tracking-wide text-white">
+            Banheira de Gelo
+        </h3>
+
+        <p class="text-neutral-300 text-sm sm:text-base leading-relaxed">
+            Busca uma forma de complementar sua recuperação após atividades físicas intensas?
+            A banheira de gelo consiste na imersão parcial ou corporal em água fria por um
+            período controlado. Essa prática é utilizada principalmente no contexto esportivo
+            e pode ajudar a reduzir temporariamente a percepção de dores e desconfortos musculares.
+        </p>
+
+        <p class="text-neutral-300 text-sm sm:text-base leading-relaxed">
+            A temperatura da água e o tempo de exposição devem ser controlados e adaptados
+            às condições de cada pessoa, respeitando os cuidados necessários para uma prática segura.
+        </p>
+
+        <!-- INDICAÇÃO E DURAÇÃO -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 py-5 border-y border-white/10">
+
+            <div class="flex items-start gap-4">
+                <i class="fa-solid fa-person text-3xl text-physio-orange mt-1"></i>
+
+                <div>
+                    <h4 class="text-sm font-bold text-white uppercase tracking-wider mb-2">
+                        Indicação
+                    </h4>
+
+                    <p class="text-sm text-neutral-400 leading-relaxed">
+                        Recuperação percebida após exercícios intensos, conforme avaliação e orientação profissional.
+                    </p>
+                </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+                <i class="fa-regular fa-clock text-3xl text-physio-orange mt-1"></i>
+
+                <div>
+                    <h4 class="text-sm font-bold text-white uppercase tracking-wider mb-2">
+                        Duração da sessão
+                    </h4>
+
+                    <p class="text-sm text-neutral-400 leading-relaxed">
+                  5 a 15 minutos, podendo variar conforme a temperatura da água, a tolerância e a necessidade de cada paciente.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- BENEFÍCIOS -->
+        <div class="space-y-4">
+
+            <h4 class="text-sm font-bold text-white uppercase tracking-widest">
+                Principais benefícios
+            </h4>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-5 gap-y-4">
+
+                <div class="flex items-start gap-3">
+                    <i class="fa-regular fa-circle-check text-physio-orange mt-1"></i>
+                    <span class="text-sm text-neutral-300">
+                        Pode reduzir a percepção de dores musculares após exercícios.
+                    </span>
+                </div>
+
+                <div class="flex items-start gap-3">
+                    <i class="fa-regular fa-circle-check text-physio-orange mt-1"></i>
+                    <span class="text-sm text-neutral-300">
+                        Pode diminuir temporariamente a sensação de fadiga.
+                    </span>
+                </div>
+
+                <div class="flex items-start gap-3">
+                    <i class="fa-regular fa-circle-check text-physio-orange mt-1"></i>
+                    <span class="text-sm text-neutral-300">
+                        Pode proporcionar alívio após esforços físicos intensos.
+                    </span>
+                </div>
+
+                <div class="flex items-start gap-3">
+                    <i class="fa-regular fa-circle-check text-physio-orange mt-1"></i>
+                    <span class="text-sm text-neutral-300">
+                        Pode favorecer a sensação de recuperação entre treinos.
+                    </span>
+                </div>
+
+                <div class="flex items-start gap-3">
+                    <i class="fa-regular fa-circle-check text-physio-orange mt-1"></i>
+                    <span class="text-sm text-neutral-300">
+                        Pode complementar estratégias de recuperação esportiva.
+                    </span>
+                </div>
+
+                <div class="flex items-start gap-3">
+                    <i class="fa-regular fa-circle-check text-physio-orange mt-1"></i>
+                    <span class="text-sm text-neutral-300">
+                        Pode contribuir para a sensação de bem-estar após o exercício.
+                    </span>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- AVALIAÇÃO PERSONALIZADA -->
+        <div class="flex items-start gap-4 p-4 rounded-xl border border-white/10 bg-black/10">
+
+            <i class="fa-solid fa-clipboard-check text-2xl text-physio-orange mt-1"></i>
+
+            <div>
+                <h4 class="text-sm font-bold text-white uppercase tracking-wider mb-2">
+                    Avaliação personalizada
+                </h4>
+
+                <p class="text-sm text-neutral-400 leading-relaxed">
+                    A temperatura e o tempo de exposição precisam ser controlados.
+                    A imersão em água muito fria pode apresentar riscos, especialmente
+                    para pessoas com problemas cardiovasculares, alterações de sensibilidade
+                    ou outras condições específicas. A avaliação profissional ajuda a verificar
+                    se a prática é adequada para cada paciente.
+                </p>
+            </div>
+        </div>
+
+        <!-- BOTÃO DE AGENDAMENTO -->
+        <div class="pt-1">
+          
+<a
+  href="https://wa.me/559291502026?text=Ol%C3%A1%21%20Gostaria%20de%20agendar%20uma%20sess%C3%A3o%20de%20Banheira%20de%20Gelo%20na%20PhysioUp.%20Poderia%20me%20informar%20os%20hor%C3%A1rios%20dispon%C3%ADveis%3F"
+  target="_blank"
+  rel="noopener noreferrer"
+  class="inline-flex items-center justify-center gap-3 px-6 py-4 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-sm uppercase tracking-wide transition-all duration-300 hover:scale-[1.02]"
+>
+  <i class="fa-brands fa-whatsapp text-xl"></i>
+  Agendar este procedimento
+  <i class="fa-solid fa-arrow-right"></i>
+</a>
+
+        </div>
+
+    </div>
+
+    <!-- IMAGEM DO PROCEDIMENTO -->
+    <div class="lg:col-span-5 relative rounded-xl overflow-hidden border border-white/10 shadow-xl min-h-[320px] sm:min-h-[480px] lg:h-full">
+
+        <img
+            src="banheiragelo.avif"
+            alt="Banheira utilizada para imersão em água fria"
+            loading="lazy"
+            class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+        >
+
+        <!-- INFORMAÇÃO SOBRE A TÉCNICA -->
+        <div class="absolute bottom-0 left-0 right-0 p-4 sm:p-5 bg-neutral-950/90 backdrop-blur-sm border-t border-physio-orange/50">
+
+            <div class="flex items-center gap-4">
+                <i class="fa-solid fa-snowflake text-3xl text-physio-orange"></i>
+
+                <div>
+                    <h4 class="text-xs sm:text-sm font-bold text-white uppercase tracking-wider mb-1">
+                        Recuperação e bem-estar
+                    </h4>
+
+                    <p class="text-xs sm:text-sm text-neutral-300 leading-relaxed">
+                        A imersão em água fria pode complementar a recuperação após atividades físicas.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+            
+<!-- 7. BANHEIRA QUENTE -->
+<div id="procedimento-banheira-quente" class="bg-card-gradient rounded-2xl p-6 sm:p-10 border-glow grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+
+    <!-- INFORMAÇÕES DO PROCEDIMENTO -->
+    <div class="lg:col-span-7 space-y-6">
+
+        <!-- CABEÇALHO -->
+        <div class="flex flex-wrap items-center gap-4">
+            <span class="inline-block px-3 py-1 rounded-full bg-physio-orange/10 border border-physio-orange/30 text-physio-orange text-xs font-bold uppercase tracking-widest">
+                Procedimento 07
+            </span>
+
+            <span class="text-xs text-neutral-400 uppercase tracking-wider">
+                Relaxamento <span class="text-physio-orange">•</span>
+                Conforto corporal
+            </span>
+        </div>
+
+        <h3 class="text-2xl sm:text-4xl font-bold uppercase tracking-wide text-white">
+            Banheira Quente
+        </h3>
+
+        <p class="text-neutral-300 text-sm sm:text-base leading-relaxed">
+            Precisa relaxar após uma rotina cansativa ou atividades físicas?
+            A banheira quente utiliza água aquecida para proporcionar conforto
+            corporal. O calor pode ajudar a relaxar a musculatura e aliviar
+            temporariamente a sensação de rigidez, favorecendo uma experiência
+            de relaxamento e bem-estar.
+        </p>
+
+        <p class="text-neutral-300 text-sm sm:text-base leading-relaxed">
+            A temperatura da água e o tempo de exposição devem ser ajustados
+            para cada pessoa, evitando o calor excessivo e respeitando as
+            orientações de segurança.
+        </p>
+
+        <!-- INDICAÇÃO E DURAÇÃO -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 py-5 border-y border-white/10">
+
+            <div class="flex items-start gap-4">
+                <i class="fa-solid fa-person text-3xl text-physio-orange mt-1"></i>
+
+                <div>
+                    <h4 class="text-sm font-bold text-white uppercase tracking-wider mb-2">
+                        Indicação
+                    </h4>
+
+                    <p class="text-sm text-neutral-400 leading-relaxed">
+                        Relaxamento, desconforto muscular leve e sensação de rigidez, conforme avaliação profissional.
+                    </p>
+                </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+                <i class="fa-regular fa-clock text-3xl text-physio-orange mt-1"></i>
+
+                <div>
+                    <h4 class="text-sm font-bold text-white uppercase tracking-wider mb-2">
+                        Duração da sessão
+                    </h4>
+
+                    <p class="text-sm text-neutral-400 leading-relaxed">
+                    15 a 30 minutos, podendo variar conforme a temperatura da água e a necessidade de cada paciente.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- BENEFÍCIOS -->
+        <div class="space-y-4">
+
+            <h4 class="text-sm font-bold text-white uppercase tracking-widest">
+                Principais benefícios
+            </h4>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-5 gap-y-4">
+
+                <div class="flex items-start gap-3">
+                    <i class="fa-regular fa-circle-check text-physio-orange mt-1"></i>
+                    <span class="text-sm text-neutral-300">
+                        Pode favorecer o relaxamento muscular.
+                    </span>
+                </div>
+
+                <div class="flex items-start gap-3">
+                    <i class="fa-regular fa-circle-check text-physio-orange mt-1"></i>
+                    <span class="text-sm text-neutral-300">
+                        Pode aliviar temporariamente a sensação de rigidez.
+                    </span>
+                </div>
+
+                <div class="flex items-start gap-3">
+                    <i class="fa-regular fa-circle-check text-physio-orange mt-1"></i>
+                    <span class="text-sm text-neutral-300">
+                        Pode proporcionar conforto após uma rotina cansativa.
+                    </span>
+                </div>
+
+                <div class="flex items-start gap-3">
+                    <i class="fa-regular fa-circle-check text-physio-orange mt-1"></i>
+                    <span class="text-sm text-neutral-300">
+                        Pode contribuir para a sensação de bem-estar.
+                    </span>
+                </div>
+
+                <div class="flex items-start gap-3">
+                    <i class="fa-regular fa-circle-check text-physio-orange mt-1"></i>
+                    <span class="text-sm text-neutral-300">
+                        Pode ajudar a aliviar temporariamente tensões musculares leves.
+                    </span>
+                </div>
+
+                <div class="flex items-start gap-3">
+                    <i class="fa-regular fa-circle-check text-physio-orange mt-1"></i>
+                    <span class="text-sm text-neutral-300">
+                        Pode complementar uma rotina de relaxamento e recuperação.
+                    </span>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- AVALIAÇÃO PERSONALIZADA -->
+        <div class="flex items-start gap-4 p-4 rounded-xl border border-white/10 bg-black/10">
+
+            <i class="fa-solid fa-clipboard-check text-2xl text-physio-orange mt-1"></i>
+
+            <div>
+                <h4 class="text-sm font-bold text-white uppercase tracking-wider mb-2">
+                    Avaliação personalizada
+                </h4>
+
+                <p class="text-sm text-neutral-400 leading-relaxed">
+                    A temperatura e o tempo de exposição devem respeitar os limites
+                    de segurança. O calor pode não ser adequado para pessoas com
+                    determinadas condições cardiovasculares, alterações de sensibilidade
+                    ou outros problemas de saúde. A avaliação profissional ajuda a
+                    verificar os cuidados necessários para cada paciente.
+                </p>
+            </div>
+        </div>
+
+        <!-- BOTÃO DE AGENDAMENTO -->
+        <div class="pt-1">
+            
+
+<a
+  href="https://wa.me/559291502026?text=Ol%C3%A1%21%20Gostaria%20de%20agendar%20uma%20sess%C3%A3o%20de%20Banheira%20Quente%20na%20PhysioUp.%20Poderia%20me%20informar%20os%20hor%C3%A1rios%20dispon%C3%ADveis%3F"
+  target="_blank"
+  rel="noopener noreferrer"
+  class="inline-flex items-center justify-center gap-3 px-6 py-4 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-sm uppercase tracking-wide transition-all duration-300 hover:scale-[1.02]"
+>
+  <i class="fa-brands fa-whatsapp text-xl"></i>
+  Agendar este procedimento
+  <i class="fa-solid fa-arrow-right"></i>
+</a>
+
+
+        </div>
+
+    </div>
+
+    <!-- IMAGEM DO PROCEDIMENTO -->
+    <div class="lg:col-span-5 relative rounded-xl overflow-hidden border border-white/10 shadow-xl min-h-[320px] sm:min-h-[480px] lg:h-full">
+
+        <img
+            src="banheira quente.png"
+            alt="Banheira com água aquecida para relaxamento"
+            loading="lazy"
+            class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+        >
+
+        <!-- INFORMAÇÃO SOBRE A TÉCNICA -->
+        <div class="absolute bottom-0 left-0 right-0 p-4 sm:p-5 bg-neutral-950/90 backdrop-blur-sm border-t border-physio-orange/50">
+
+            <div class="flex items-center gap-4">
+                <i class="fa-solid fa-hot-tub-person text-3xl text-physio-orange"></i>
+
+                <div>
+                    <h4 class="text-xs sm:text-sm font-bold text-white uppercase tracking-wider mb-1">
+                        Relaxamento e bem-estar
+                    </h4>
+
+                    <p class="text-xs sm:text-sm text-neutral-300 leading-relaxed">
+                        A água aquecida pode proporcionar conforto e auxiliar no relaxamento muscular.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- 8. TERAPIA DE CONTRASTE -->
+<div id="procedimento-fisioterapia-de-contraste" class="bg-card-gradient rounded-2xl p-6 sm:p-10 border-glow grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+
+  <!-- Informações do procedimento -->
+  <div class="lg:col-span-7 space-y-6">
+
+    <!-- Cabeçalho -->
+    <div class="flex flex-wrap items-center gap-4">
+      <span class="bg-physio-orange/10 border border-physio-orange/30 text-physio-orange text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full">
+        Procedimento 08
+      </span>
+
+      <span class="text-neutral-400 text-xs font-bold uppercase tracking-widest">
+        <span class="text-physio-orange">•</span> Recuperação e bem-estar
+      </span>
+    </div>
+
+    <h2 class="text-2xl sm:text-4xl font-bold uppercase tracking-wide text-white">
+      Terapia de Contraste
+    </h2>
+
+    <div class="space-y-3 text-neutral-300 text-sm sm:text-base leading-relaxed">
+      <p>
+       Busca melhorar a recuperação muscular após atividades físicas ou aliviar a sensação de cansaço?
+
+A terapia de contraste funciona por meio da alternância entre água quente e fria, expondo o corpo a diferentes temperaturas de forma controlada. O calor ajuda a relaxar a musculatura, enquanto o frio proporciona uma sensação refrescante. 
+      <p>
+        É utilizada em determinados protocolos de recuperação e bem-estar. A aplicação, as temperaturas e o tempo de exposição devem ser definidos conforme as necessidades e condições de cada pessoa, com orientação profissional.
+      </p>
+    </div>
+
+    <!-- Indicação e duração -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 py-5 border-y border-white/10">
+
+      <div class="flex items-start gap-4">
+        <i class="fa-solid fa-person text-2xl text-physio-orange mt-1"></i>
+        <div>
+          <h3 class="text-sm font-bold text-white uppercase tracking-widest mb-2">
+            Indicação
+          </h3>
+          <p class="text-sm text-neutral-300 leading-relaxed">
+            Pode ser considerada para recuperação muscular, sensação de cansaço e determinados cuidados circulatórios, após avaliação profissional.
+          </p>
+        </div>
+      </div>
+
+      <div class="flex items-start gap-4">
+        <i class="fa-regular fa-clock text-2xl text-physio-orange mt-1"></i>
+        <div>
+          <h3 class="text-sm font-bold text-white uppercase tracking-widest mb-2">
+            Duração da sessão
+          </h3>
+          <p class="text-sm text-neutral-300 leading-relaxed">
+         15 a 30 minutos, podendo variar conforme o protocolo utilizado e a necessidade de cada paciente.
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Benefícios -->
+    <div class="space-y-4">
+      <h3 class="text-sm font-bold text-white uppercase tracking-widest flex items-center gap-3">
+        <i class="fa-regular fa-circle-check text-xl text-physio-orange"></i>
+        Principais benefícios
+      </h3>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-5 gap-y-4">
+
+        <div class="flex items-start gap-3">
+          <i class="fa-regular fa-circle-check text-physio-orange mt-1"></i>
+          <p class="text-sm text-neutral-300">
+            Pode auxiliar na recuperação muscular.
+          </p>
+        </div>
+
+        <div class="flex items-start gap-3">
+          <i class="fa-regular fa-circle-check text-physio-orange mt-1"></i>
+          <p class="text-sm text-neutral-300">
+            Pode ajudar a aliviar a sensação de cansaço.
+          </p>
+        </div>
+
+        <div class="flex items-start gap-3">
+          <i class="fa-regular fa-circle-check text-physio-orange mt-1"></i>
+          <p class="text-sm text-neutral-300">
+            Promove estímulos térmicos alternados.
+          </p>
+        </div>
+
+        <div class="flex items-start gap-3">
+          <i class="fa-regular fa-circle-check text-physio-orange mt-1"></i>
+          <p class="text-sm text-neutral-300">
+            Pode contribuir para a sensação de relaxamento.
+          </p>
+        </div>
+
+        <div class="flex items-start gap-3">
+          <i class="fa-regular fa-circle-check text-physio-orange mt-1"></i>
+          <p class="text-sm text-neutral-300">
+            Pode auxiliar no controle da sensação de inchaço em situações específicas.
+          </p>
+        </div>
+
+        <div class="flex items-start gap-3">
+          <i class="fa-regular fa-circle-check text-physio-orange mt-1"></i>
+          <p class="text-sm text-neutral-300">
+            Pode complementar um plano individualizado de recuperação.
+          </p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Avaliação personalizada -->
+    <div class="flex items-start gap-4 p-4 rounded-xl border border-white/10 bg-black/10">
+      <i class="fa-solid fa-clipboard-check text-2xl text-physio-orange mt-1"></i>
+      <div>
+        <h3 class="text-sm font-bold text-white uppercase tracking-widest mb-2">
+          Avaliação personalizada
+        </h3>
+        <p class="text-sm text-neutral-300 leading-relaxed">
+          A terapia de contraste não é indicada para todas as pessoas. A avaliação profissional é importante para identificar contraindicações e determinar se a alternância térmica é adequada, considerando condições circulatórias, sensibilidade térmica e histórico de saúde.
+        </p>
+      </div>
+    </div>
+
+    <!-- Botão WhatsApp -->
+    
+<a
+  href="https://wa.me/559291502026?text=Ol%C3%A1%21%20Gostaria%20de%20agendar%20uma%20sess%C3%A3o%20de%20Terapia%20de%20Contraste%20na%20PhysioUp.%20Poderia%20me%20informar%20os%20hor%C3%A1rios%20dispon%C3%ADveis%3F"
+  target="_blank"
+  rel="noopener noreferrer"
+  class="inline-flex items-center justify-center gap-3 px-6 py-4 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-sm uppercase tracking-wide transition-all duration-300 hover:scale-[1.02]"
+>
+  <i class="fa-brands fa-whatsapp text-xl"></i>
+  Agendar este procedimento
+  <i class="fa-solid fa-arrow-right"></i>
+</a>
+
+
+
+  </div>
+
+   <!-- IMAGEM DO PROCEDIMENTO -->
+    <div class="lg:col-span-5 relative rounded-xl overflow-hidden border border-white/10 shadow-xl h-[750px] sm:h-[820px] lg:h-[830px]">
+
+        <img
+            src="constrate.jpg"
+            alt="Banheira com água aquecida para relaxamento"
+            loading="lazy"
+            class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+        >
+
+        <!-- INFORMAÇÃO SOBRE A TÉCNICA -->
+        <div class="absolute bottom-0 left-0 right-0 p-4 sm:p-5 bg-neutral-950/90 backdrop-blur-sm border-t border-physio-orange/50">
+
+            <div class="flex items-center gap-4">
+                <i class="fa-solid fa-hot-tub-person text-3xl text-physio-orange"></i>
+
+                <div>
+                    <h4 class="text-xs sm:text-sm font-bold text-white uppercase tracking-wider mb-1">
+                       Recuperação, equilíbrio e bem-estar
+                    </h4>
+
+                    <p class="text-xs sm:text-sm text-neutral-300 leading-relaxed">
+                        A alternância entre água quente e fria proporciona uma experiência terapêutica que auxilia no relaxamento muscular, estimula a circulação sanguínea e contribui para a recuperação física, promovendo conforto e bem-estar.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+   <section id="localizacao" class="py-20 bg-physio-dark relative border-t border-white/5">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+                    <span class="text-physio-orange font-bold text-xs tracking-widest uppercase">Venha Conhecer</span>
+                    <h2 class="text-3xl sm:text-4xl font-black uppercase tracking-tight">Onde <span class="text-gradient">Estamos</span></h2>
+                    <div class="w-16 h-1 bg-physio-orange rounded-full mx-auto"></div>
+                    <p class="text-neutral-300 text-sm sm:text-base leading-relaxed pt-2">
+                        Nossa estrutura foi minuciosamente projetada para oferecer conforto, privacidade e equipamentos de alta tecnologia para o seu atendimento.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch max-w-6xl mx-auto">
+                    
+                    <!-- CARD INSTAGRAM (CARD DA ESQUERDA) -->
+                    <div class="bg-card-gradient p-6 sm:p-8 rounded-3xl border border-white/10 shadow-glow flex flex-col justify-between h-full space-y-6">
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between border-b border-white/10 pb-4 gap-4">
+                                <div class="flex items-center gap-3 min-w-0">
+                                    <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-amber-500 to-purple-600 p-0.5 shrink-0">
+                                        <div class="w-full h-full bg-physio-dark rounded-full flex items-center justify-center">
+                                            <i class="fa-brands fa-instagram text-2xl text-white"></i>
+                                        </div>
+                                    </div>
+                                    <div class="truncate">
+                                        <h3 class="font-bold text-base text-white truncate">
+                                            <a href="https://www.instagram.com/physioup.am/" target="_blank" class="hover:text-physio-orange transition-colors">@physioup.am</a>
+                                        </h3>
+                                        <p class="text-xs text-neutral-400">Instagram Oficial</p>
+                                    </div>
+                                </div>
+                                <a href="https://www.instagram.com/physioup.am/" target="_blank" class="px-5 py-2 rounded-full bg-physio-orange/20 border border-physio-orange/50 text-physio-orange text-xs font-bold hover:bg-physio-orange hover:text-white transition-all shrink-0">
+                                    Seguir
+                                </a>
+                            </div>
+
+                            <p class="text-sm text-neutral-300 leading-relaxed">
+                                Acompanhe diariamente nossos casos de sucesso, dicas de prevenção, exercícios de fortalecimento e bastidores da nossa estrutura.
+                            </p>
+                        </div>
+
+                        <!-- EMBED OFICIAL INSTAGRAM POST -->
+                        <div class="w-full flex-1 flex flex-col items-center justify-center min-h-[320px] rounded-2xl overflow-hidden bg-neutral-900 border border-white/10 p-4">
+                            <div class="flex justify-center w-full overflow-hidden">
+                                <blockquote
+                                    class="instagram-media"
+                                    data-instgrm-permalink="https://www.instagram.com/p/DaBX2viK0Tl/"
+                                    data-instgrm-version="14"
+                                    style="width:100%; max-width:540px; min-width:280px; margin:0 auto;">
+                                </blockquote>
+                            </div>
+
+                            <div class="text-center mt-4">
+                                <a
+                                    href="https://www.instagram.com/physioup.am/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="text-physio-orange font-bold text-sm hover:text-amber-400 transition-colors">
+                                    Ver perfil completo ↗
+                                </a>
+                            </div>
+                            <script async src="https://www.instagram.com/embed.js"></script>
+                        </div>
+                    </div>
+
+                    <!-- CARD LOCALIZAÇÃO / MAPA (CARD DA DIREITA) -->
+                    <div class="bg-card-gradient p-6 sm:p-8 rounded-3xl border border-white/10 shadow-glow flex flex-col justify-between h-full space-y-6">
+                        <div class="space-y-4 text-sm font-semibold text-neutral-200">
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-physio-orange shrink-0">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-white font-bold text-sm">Endereço</h4>
+                                    <p class="text-xs text-neutral-400 mt-0.5">Avenida Mário Ypiranga, 1550 - Parque 10 de Novembro, Manaus - AM</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-amber-400 shrink-0">
+                                    <i class="fa-solid fa-phone"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-white font-bold text-sm">Contato Direct / Agendamento</h4>
+                                    <p class="text-xs text-neutral-400 mt-0.5">Agendamentos rápidos via WhatsApp</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- CONTAINER DO MAPA PREENCHENDO A MESMA ALTURA DO INSTAGRAM -->
+                        <div class="space-y-4 flex-1 flex flex-col justify-end">
+                            <div class="w-full flex-1 min-h-[250px] rounded-2xl overflow-hidden border border-white/10 shadow-xl">
+                                <iframe
+                                    src="https://maps.google.com/maps?q=Avenida%20M%C3%A1rio%20Ypiranga%2C%201550%2C%20Parque%2010%20de%20Novembro%2C%20Manaus%2C%20AM%2C%2069050-030&t=&z=16&ie=UTF8&iwloc=&output=embed"
+                                    width="100%"
+                                    height="100%"
+                                    style="border:0; min-height: 250px;"
+                                    loading="lazy"
+                                    allowfullscreen
+                                    referrerpolicy="no-referrer-when-downgrade"
+                                    title="Localização da Physio UP">
+                                </iframe>
+                            </div>
+
+                            <a
+                                href="https://www.google.com/maps/dir/?api=1&destination=Avenida+M%C3%A1rio+Ypiranga%2C+1550%2C+Parque+10+de+Novembro%2C+Manaus+-+AM%2C+69050-030"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="w-full py-4 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-xs uppercase tracking-wider transition-all shadow-lg hover:shadow-emerald-500/20 flex items-center justify-center gap-3">
+                                <i class="fa-solid fa-diamond-turn-right text-base"></i>
+                                Traçar Rota até a Clínica
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </div>
+
+     <!-- RODAPÉ FULL WIDTH (EXATAMENTE O MESMO ESTILO DA SEÇÃO DESTAQUES) -->
+<footer class="w-full bg-black border-t border-white/10 py-10 px-4">
+    <div class="max-w-7xl mx-auto flex flex-col items-center justify-center text-center space-y-5">
+        <div class="flex justify-center items-center gap-3">
+            <i class="fa-solid fa-person-running text-physio-orange text-2xl"></i>
+            <span class="text-2xl font-black italic tracking-wider text-white">PHYSIO<span class="text-physio-orange">UP</span></span>
+        </div>
+
+        <div class="flex justify-center items-center gap-6 text-xl">
+            <a href="https://www.instagram.com/physioup.am/" target="_blank" class="text-neutral-400 hover:text-physio-orange transition-colors"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://api.whatsapp.com/message/4YRWNZAWB4I6C1?autoload=1&app_absent=0&utm_source=ig" target="_blank" class="text-neutral-400 hover:text-emerald-500 transition-colors"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+
+        <p class="text-neutral-500 text-xs">
+            &copy; 2026 PhysioUp - Fisioterapia Especializada. Todos os direitos reservados.
+        </p>
+    </div>
+</footer>
+
+<!-- BOTÃO FLUTUANTE WHATSAPP -->
+<a href="https://api.whatsapp.com/message/4YRWNZAWB4I6C1?autoload=1&app_absent=0&utm_source=ig" target="_blank" class="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white flex items-center justify-center text-2xl shadow-2xl hover:scale-110 transition-transform duration-300">
+    <i class="fa-brands fa-whatsapp"></i>
+</a>
+</body>
+</html>
