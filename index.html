@@ -2693,7 +2693,43 @@ section[id], [id^="procedimento-"], #inicio-procedimentos { scroll-margin-top: 8
 
 <script>
 (function () {
+/* ===== MOBILE: IMAGEM DO PROCEDIMENTO LOGO ABAIXO DO TÍTULO =====
+   Celular/tablet (< 1024px): etiqueta > título > IMAGEM > resto do conteúdo.
+   PC (>= 1024px): a imagem volta exatamente para o lugar original. */
+function setupProcImages() {
+  var procs = [];
+  Array.prototype.forEach.call(document.querySelectorAll('div[id^="procedimento-"]'), function (box) {
+    var imgCol = null, textCol = null;
+    Array.prototype.forEach.call(box.children, function (k) {
+      if (k.querySelector(':scope > img')) imgCol = k;          /* coluna que tem a foto */
+      else if (k.querySelector('h2, h3')) textCol = k;          /* coluna que tem o título */
+    });
+    if (!imgCol || !textCol || textCol.children.length < 3) return;
+
+    imgCol.setAttribute('data-proc-img', '');
+    var marker = document.createComment('posicao-original-imagem');
+    box.insertBefore(marker, imgCol);                            /* guarda o lugar original */
+    procs.push({ textCol: textCol, imgCol: imgCol, marker: marker });
+  });
+
+  var narrow = window.matchMedia('(max-width: 1023px)');
+  function placeImages() {
+    procs.forEach(function (p) {
+      if (narrow.matches) {
+        var title = p.textCol.children[1];                       /* 0 = etiqueta, 1 = título */
+        if (title && title.nextSibling !== p.imgCol) p.textCol.insertBefore(p.imgCol, title.nextSibling);
+      } else if (p.marker.nextSibling !== p.imgCol) {
+        p.marker.parentNode.insertBefore(p.imgCol, p.marker.nextSibling);
+      }
+    });
+  }
+  placeImages();
+  narrow.addEventListener('change', placeImages);
+  window.addEventListener('load', placeImages);
+}
+
 function init() {
+  try { setupProcImages(); } catch (err) { console.error('PhysioUp patch (imagens):', err); }
   /* ===== 1. MENU HAMBÚRGUER (corrige o toggleMenu que faltava) ===== */
   var menu = document.getElementById('mobileMenu');
   var menuBtn = document.getElementById('menuBtn');
@@ -2848,41 +2884,6 @@ function init() {
     }, { passive: true });
   }
 
-  /* ===== 4. MOBILE: IMAGEM DO PROCEDIMENTO LOGO ABAIXO DO TÍTULO =====
-     Celular/tablet (< 1024px): etiqueta > título > IMAGEM > resto do conteúdo.
-     PC (>= 1024px): a imagem volta exatamente para o lugar original. */
-  var procs = [];
-  Array.prototype.forEach.call(document.querySelectorAll('[id^="procedimento-"]'), function (box) {
-    var kids = Array.prototype.slice.call(box.children);
-    var textCol = null, imgCol = null;
-    kids.forEach(function (k) {
-      if (k.classList.contains('lg:col-span-7')) textCol = k;
-      if (k.classList.contains('lg:col-span-5')) imgCol = k;
-    });
-    if (!textCol || !imgCol || textCol.children.length < 3) return;
-
-    imgCol.setAttribute('data-proc-img', '');
-    var marker = document.createComment('posicao-original-imagem');
-    box.insertBefore(marker, imgCol);          /* guarda o lugar original */
-    procs.push({ textCol: textCol, imgCol: imgCol, marker: marker });
-  });
-
-  var narrow = window.matchMedia('(max-width: 1023px)');
-  function placeImages() {
-    procs.forEach(function (p) {
-      if (narrow.matches) {
-        /* depois do 2º bloco (etiqueta + título) */
-        var title = p.textCol.children[1];
-        if (title && title.nextSibling !== p.imgCol) {
-          p.textCol.insertBefore(p.imgCol, title.nextSibling);
-        }
-      } else if (p.marker.nextSibling !== p.imgCol) {
-        p.marker.parentNode.insertBefore(p.imgCol, p.marker.nextSibling);
-      }
-    });
-  }
-  placeImages();
-  narrow.addEventListener('change', placeImages);
 }
 
 /* Espera a página carregar, não importa onde o script foi colado */
@@ -2892,6 +2893,6 @@ if (document.readyState === 'loading') {
   init();
 }
 })();
-</script>
+</script>   
 </body>
 </html>
