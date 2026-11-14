@@ -2619,6 +2619,23 @@ section[id], [id^="procedimento-"], #inicio-procedimentos { scroll-margin-top: 8
   #procedimento-fisioterapia-de-contraste > div:last-child { height: 440px !important; }
 }
 
+/* ===== MOBILE: IMAGEM FICA ENTRE O TÍTULO E O RESTO DO CONTEÚDO =====
+   Ordem na tela: etiqueta "Procedimento 0X" > título > IMAGEM > resto.
+   No PC (a partir de 1024px) nada disso se aplica. */
+@media (max-width: 1023px) {
+  div[id^="procedimento-"] { gap: 1.5rem; }
+
+  /* a coluna de texto "se dissolve" e seus blocos viram itens da grade */
+  div[id^="procedimento-"] > .lg\:col-span-7 { display: contents; }
+  div[id^="procedimento-"] > .lg\:col-span-7 > * { margin-top: 0 !important; order: 2; }
+
+  /* os dois primeiros blocos (etiqueta e título) ficam em cima */
+  div[id^="procedimento-"] > .lg\:col-span-7 > :nth-child(-n+2) { order: 0; }
+
+  /* a imagem entra logo depois do título */
+  div[id^="procedimento-"] > .lg\:col-span-5 { order: 1 !important; }
+}
+
 /* ===== CELULAR PEQUENO ===== */
 @media (max-width: 560px) {
   .procedimentos { padding: 32px 16px; }
