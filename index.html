@@ -2616,24 +2616,7 @@ section[id], [id^="procedimento-"], #inicio-procedimentos { scroll-margin-top: 8
 
 /* Imagem do procedimento 8 era fixa em 750px */
 @media (max-width: 1023px) {
-  #procedimento-fisioterapia-de-contraste > div:last-child { height: 440px !important; }
-}
-
-/* ===== MOBILE: IMAGEM FICA ENTRE O TÍTULO E O RESTO DO CONTEÚDO =====
-   Ordem na tela: etiqueta "Procedimento 0X" > título > IMAGEM > resto.
-   No PC (a partir de 1024px) nada disso se aplica. */
-@media (max-width: 1023px) {
-  div[id^="procedimento-"] { gap: 1.5rem; }
-
-  /* a coluna de texto "se dissolve" e seus blocos viram itens da grade */
-  div[id^="procedimento-"] > .lg\:col-span-7 { display: contents; }
-  div[id^="procedimento-"] > .lg\:col-span-7 > * { margin-top: 0 !important; order: 2; }
-
-  /* os dois primeiros blocos (etiqueta e título) ficam em cima */
-  div[id^="procedimento-"] > .lg\:col-span-7 > :nth-child(-n+2) { order: 0; }
-
-  /* a imagem entra logo depois do título */
-  div[id^="procedimento-"] > .lg\:col-span-5 { order: 1 !important; }
+  #procedimento-fisioterapia-de-contraste [data-proc-img] { height: 440px !important; }
 }
 
 /* ===== CELULAR PEQUENO ===== */
@@ -2864,6 +2847,42 @@ function init() {
       if (Math.abs(dx) > 40) changeStoryImg(dx < 0 ? 1 : -1);
     }, { passive: true });
   }
+
+  /* ===== 4. MOBILE: IMAGEM DO PROCEDIMENTO LOGO ABAIXO DO TÍTULO =====
+     Celular/tablet (< 1024px): etiqueta > título > IMAGEM > resto do conteúdo.
+     PC (>= 1024px): a imagem volta exatamente para o lugar original. */
+  var procs = [];
+  Array.prototype.forEach.call(document.querySelectorAll('[id^="procedimento-"]'), function (box) {
+    var kids = Array.prototype.slice.call(box.children);
+    var textCol = null, imgCol = null;
+    kids.forEach(function (k) {
+      if (k.classList.contains('lg:col-span-7')) textCol = k;
+      if (k.classList.contains('lg:col-span-5')) imgCol = k;
+    });
+    if (!textCol || !imgCol || textCol.children.length < 3) return;
+
+    imgCol.setAttribute('data-proc-img', '');
+    var marker = document.createComment('posicao-original-imagem');
+    box.insertBefore(marker, imgCol);          /* guarda o lugar original */
+    procs.push({ textCol: textCol, imgCol: imgCol, marker: marker });
+  });
+
+  var narrow = window.matchMedia('(max-width: 1023px)');
+  function placeImages() {
+    procs.forEach(function (p) {
+      if (narrow.matches) {
+        /* depois do 2º bloco (etiqueta + título) */
+        var title = p.textCol.children[1];
+        if (title && title.nextSibling !== p.imgCol) {
+          p.textCol.insertBefore(p.imgCol, title.nextSibling);
+        }
+      } else if (p.marker.nextSibling !== p.imgCol) {
+        p.marker.parentNode.insertBefore(p.imgCol, p.marker.nextSibling);
+      }
+    });
+  }
+  placeImages();
+  narrow.addEventListener('change', placeImages);
 }
 
 /* Espera a página carregar, não importa onde o script foi colado */
