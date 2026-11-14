@@ -2589,8 +2589,6 @@ section[id], [id^="procedimento-"], #inicio-procedimentos { scroll-margin-top: 8
 @media (max-width: 767px) {
   /* Menu hambúrguer */
   #menuBtn { width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border-radius: 12px; }
-  #mobileMenu { max-height: calc(100vh - 80px); max-height: calc(100dvh - 80px); overflow-y: auto; }
-  #mobileMenu a.block { padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,.06); }
 
   /* Animações pesadas desligadas no celular */
   .animate-glow { animation: none !important; }
@@ -2638,19 +2636,12 @@ section[id], [id^="procedimento-"], #inicio-procedimentos { scroll-margin-top: 8
   #historia .grid-cols-3 .text-2xl { font-size: 1rem; }
 }
 
-/* ===== BOTÃO DE NAVEGAÇÃO RÁPIDA ===== */
+/* ===== MENU + TÓPICOS (painel que abre pelo hambúrguer) ===== */
+/* o menu antigo do hambúrguer foi substituído pelo painel */
+#mobileMenu { display: none !important; }
 #qnav { display: none; }
 @media (max-width: 767px) { #qnav { display: block; } }
 
-#qnavBtn {
-  position: fixed; left: 1rem; bottom: calc(1.5rem + env(safe-area-inset-bottom, 0px)); z-index: 60;
-  display: flex; align-items: center; gap: .5rem; height: 48px; padding: 0 1.1rem;
-  border: 0; border-radius: 999px; cursor: pointer;
-  background: linear-gradient(135deg, #FF6B00, #FFAA00); color: #0e1013;
-  font: 700 13px/1 'Montserrat', sans-serif;
-  box-shadow: 0 8px 24px rgba(255,107,0,.35), 0 2px 6px rgba(0,0,0,.5);
-}
-#qnavBtn:active { transform: scale(.97); }
 
 #qnavOverlay {
   position: fixed; inset: 0; z-index: 70; background: rgba(0,0,0,.65);
@@ -2677,6 +2668,14 @@ section[id], [id^="procedimento-"], #inicio-procedimentos { scroll-margin-top: 8
   width: 44px; height: 44px; border: 0; border-radius: 50%; cursor: pointer;
   background: rgba(255,255,255,.08); color: #fff; font-size: 18px;
 }
+.qn-foot { display: flex; gap: .6rem; padding: .75rem; border-top: 1px solid rgba(255,255,255,.08); }
+.qn-foot a {
+  flex: 1; display: flex; align-items: center; justify-content: center; gap: .5rem; min-height: 48px;
+  border-radius: 12px; font-size: 13px; font-weight: 700; text-decoration: none; color: #fff;
+}
+.qn-foot a i { font-size: 18px; }
+.qn-foot a.qn-ig { border: 1px solid rgba(255,255,255,.2); background: rgba(255,255,255,.04); }
+.qn-foot a.qn-wa { background: #10b981; }
 .qn-body { position: relative; overflow-y: auto; overscroll-behavior: contain; padding: .5rem .75rem 1rem; }
 .qn-title { margin: .9rem .5rem .4rem; font-size: 12px; font-weight: 700; color: #FF8800; }
 .qn-body ul { list-style: none; margin: 0; padding: 0; }
@@ -2730,25 +2729,9 @@ function setupProcImages() {
 
 function init() {
   try { setupProcImages(); } catch (err) { console.error('PhysioUp patch (imagens):', err); }
-  /* ===== 1. MENU HAMBÚRGUER (corrige o toggleMenu que faltava) ===== */
-  var menu = document.getElementById('mobileMenu');
+  /* ===== MENU + TÓPICOS NO MESMO BOTÃO (o hambúrguer do topo) ===== */
   var menuBtn = document.getElementById('menuBtn');
 
-  function setMenu(open) {
-    if (!menu || !menuBtn) return;
-    menu.classList.toggle('hidden', !open);
-    menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
-    menuBtn.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
-    var icon = menuBtn.querySelector('i');
-    if (icon) icon.className = open ? 'fa-solid fa-xmark' : 'fa-solid fa-bars';
-  }
-  window.toggleMenu = function () {
-    if (menu) setMenu(menu.classList.contains('hidden'));
-  };
-  if (menuBtn) { menuBtn.setAttribute('aria-label', 'Abrir menu'); menuBtn.setAttribute('aria-expanded', 'false'); }
-  if (menu) menu.addEventListener('click', function (e) { if (e.target.closest('a')) setMenu(false); });
-
-  /* ===== 2. NAVEGAÇÃO RÁPIDA ===== */
   var SECTIONS = [
     ['inicio', 'Início', 'fa-house'],
     ['secao-procedimentos', 'Resumo dos procedimentos', 'fa-table-cells-large'],
@@ -2767,6 +2750,8 @@ function init() {
     ['procedimento-banheira-quente', 'Banheira Quente'],
     ['procedimento-fisioterapia-de-contraste', 'Terapia de Contraste']
   ];
+  var URL_IG = 'https://www.instagram.com/physioup.am/';
+  var URL_WA = 'https://api.whatsapp.com/message/4YRWNZAWB4I6C1?autoload=1&amp;app_absent=0&amp;utm_source=ig';
 
   /* ids na ordem em que aparecem na página (usado para marcar o tópico atual) */
   var order = [];
@@ -2776,11 +2761,9 @@ function init() {
   });
 
   var html = '';
-  html += '<button id="qnavBtn" type="button" aria-haspopup="dialog" aria-controls="qnavSheet" aria-expanded="false">'
-        + '<i class="fa-solid fa-list-ul"></i><span>Tópicos</span></button>';
   html += '<div id="qnavOverlay"></div>';
-  html += '<div id="qnavSheet" role="dialog" aria-modal="true" aria-label="Navegação rápida">'
-        + '<div class="qn-head"><strong>Ir para</strong>'
+  html += '<div id="qnavSheet" role="dialog" aria-modal="true" aria-label="Menu e tópicos da página">'
+        + '<div class="qn-head"><strong>Menu</strong>'
         + '<button id="qnavClose" type="button" aria-label="Fechar"><i class="fa-solid fa-xmark"></i></button></div>'
         + '<div class="qn-body"><p class="qn-title">Seções</p><ul>';
   SECTIONS.forEach(function (s) {
@@ -2790,19 +2773,29 @@ function init() {
   PROCS.forEach(function (p, i) {
     html += '<li><a href="#' + p[0] + '" data-qn="' + p[0] + '"><span class="qn-num">' + (i + 1) + '</span><span>' + p[1] + '</span></a></li>';
   });
-  html += '</ul></div></div>';
+  html += '</ul></div>'
+        + '<div class="qn-foot">'
+        + '<a class="qn-ig" href="' + URL_IG + '" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram"></i><span>Instagram</span></a>'
+        + '<a class="qn-wa" href="' + URL_WA + '" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i><span>WhatsApp</span></a>'
+        + '</div></div>';
 
   var root = document.createElement('div');
   root.id = 'qnav';
   root.innerHTML = html;
   document.body.appendChild(root);
 
-  var btn = document.getElementById('qnavBtn');
   var overlay = document.getElementById('qnavOverlay');
   var sheet = document.getElementById('qnavSheet');
   var closeBtn = document.getElementById('qnavClose');
   var body = sheet.querySelector('.qn-body');
   var links = Array.prototype.slice.call(sheet.querySelectorAll('a[data-qn]'));
+
+  if (menuBtn) {
+    menuBtn.setAttribute('aria-label', 'Abrir menu e tópicos');
+    menuBtn.setAttribute('aria-haspopup', 'dialog');
+    menuBtn.setAttribute('aria-controls', 'qnavSheet');
+    menuBtn.setAttribute('aria-expanded', 'false');
+  }
 
   function getActive() {
     var cur = null;
@@ -2819,7 +2812,6 @@ function init() {
   }
 
   function openNav() {
-    setMenu(false);
     var act = getActive();
     var activeLink = null;
     links.forEach(function (a) {
@@ -2828,7 +2820,7 @@ function init() {
       if (on) { a.setAttribute('aria-current', 'true'); activeLink = a; } else { a.removeAttribute('aria-current'); }
     });
     root.classList.add('open');
-    btn.setAttribute('aria-expanded', 'true');
+    if (menuBtn) menuBtn.setAttribute('aria-expanded', 'true');
     lock(true);
     if (activeLink) body.scrollTop = Math.max(0, activeLink.offsetTop - body.clientHeight / 2);
     closeBtn.focus({ preventScroll: true });
@@ -2836,19 +2828,20 @@ function init() {
 
   function closeNav(restoreFocus) {
     root.classList.remove('open');
-    btn.setAttribute('aria-expanded', 'false');
+    if (menuBtn) menuBtn.setAttribute('aria-expanded', 'false');
     lock(false);
-    if (restoreFocus) btn.focus({ preventScroll: true });
+    if (restoreFocus && menuBtn) menuBtn.focus({ preventScroll: true });
   }
 
-  btn.addEventListener('click', openNav);
+  /* O hambúrguer já chama toggleMenu() no seu HTML (onclick) */
+  window.toggleMenu = function () {
+    if (root.classList.contains('open')) closeNav(true); else openNav();
+  };
+
   closeBtn.addEventListener('click', function () { closeNav(true); });
   overlay.addEventListener('click', function () { closeNav(true); });
   document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') {
-      if (root.classList.contains('open')) closeNav(true);
-      else setMenu(false);
-    }
+    if (e.key === 'Escape' && root.classList.contains('open')) closeNav(true);
   });
 
   sheet.addEventListener('click', function (e) {
@@ -2866,9 +2859,9 @@ function init() {
     }
   });
 
-  /* Girou o celular / abriu em tela grande: fecha tudo */
+  /* Abriu em tela grande: fecha o painel */
   window.matchMedia('(min-width: 768px)').addEventListener('change', function (m) {
-    if (m.matches) { closeNav(false); setMenu(false); }
+    if (m.matches) closeNav(false);
   });
 
   /* ===== 3. GALERIA DA HISTÓRIA: arrastar com o dedo ===== */
@@ -2893,6 +2886,6 @@ if (document.readyState === 'loading') {
   init();
 }
 })();
-</script>   
+</script>
 </body>
 </html>
